@@ -13,12 +13,12 @@ type produto struct {
 
 func (p produto) EValido() (bool, error) {
 	switch {
-	case "" == p.nome || "" == strings.Trim(p.nome, " "):
-		return false, fmt.Errorf("Nome do produto está vazio")
-	case 0 >= p.preco:
-		return false, fmt.Errorf("Preço do produto %s está menor ou igual a zero", p.nome)
+	case p.nome == "" || strings.Trim(p.nome, " ") == "":
+		return false, fmt.Errorf("nome do produto está vazio")
+	case p.preco <= 0:
+		return false, fmt.Errorf("preço do produto %s está menor ou igual a zero", p.nome)
 	case !p.estoqueEstaDisponivel:
-		return false, fmt.Errorf("Estoque do produto %s não está disponível", p.nome)
+		return false, fmt.Errorf("estoque do produto %s não está disponível", p.nome)
 	default:
 		return true, nil
 	}

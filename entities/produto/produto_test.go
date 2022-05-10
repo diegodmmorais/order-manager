@@ -37,7 +37,7 @@ func TestProdutoComNomeVazio(t *testing.T) {
 	assert.False(t, valido)
 	assert.NotNil(t, mensage)
 	assert.NotEmpty(t, mensage)
-	assert.Equal(t, "Nome do produto está vazio", mensage.Error())
+	assert.Equal(t, "nome do produto está vazio", mensage.Error())
 }
 
 func TestProdutoComNomeEmBranco(t *testing.T) {
@@ -55,7 +55,7 @@ func TestProdutoComNomeEmBranco(t *testing.T) {
 	assert.False(t, valido)
 	assert.NotNil(t, mensage)
 	assert.NotEmpty(t, mensage)
-	assert.Equal(t, "Nome do produto está vazio", mensage.Error())
+	assert.Equal(t, "nome do produto está vazio", mensage.Error())
 }
 
 func TestProdutoComPrecoZero(t *testing.T) {
@@ -73,7 +73,7 @@ func TestProdutoComPrecoZero(t *testing.T) {
 	assert.False(t, valido)
 	assert.NotNil(t, mensage)
 	assert.NotEmpty(t, mensage)
-	assert.Equal(t, "Preço do produto MacBook Pro 15 2022 está menor ou igual a zero", mensage.Error())
+	assert.Equal(t, "preço do produto MacBook Pro 15 2022 está menor ou igual a zero", mensage.Error())
 }
 
 func TestProdutoComEstoqueIndisponivel(t *testing.T) {
@@ -87,9 +87,9 @@ func TestProdutoComEstoqueIndisponivel(t *testing.T) {
 	assert.NotEmpty(t, produto.GetNome())
 	assert.NotNil(t, produto.GetPreco())
 	assert.Equal(t, float32(17500.0), produto.GetPreco())
-	assert.True(t, produto.EstoqueEstaDisponivel())
+	assert.False(t, produto.EstoqueEstaDisponivel())
 	assert.False(t, valido)
 	assert.NotNil(t, mensage)
 	assert.NotEmpty(t, mensage)
-	assert.Equal(t, "Preço do produto MacBook Pro 15 2022 está menor ou igual a zero", mensage.Error())
+	assert.Equal(t, "estoque do produto MacBook Pro 15 2022 não está disponível", mensage.Error())
 }
