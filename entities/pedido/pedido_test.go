@@ -3,63 +3,157 @@ package pedido
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/diego-dm-morais/order-manager/entities/cliente"
+	"github.com/diego-dm-morais/order-manager/entities/endereco"
+	"github.com/diego-dm-morais/order-manager/entities/item"
 	"github.com/diego-dm-morais/order-manager/entities/produto"
+	"github.com/stretchr/testify/assert"
 )
 
-func TestSalvarPedido(t *testing.T) {
+func TestPedidoEValido(t *testing.T) {
 	t.Parallel()
 
+	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 
-	var produto produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var item IItem = item.Builder().SetProduto(produto).SetQuantidade(1).Build()
-	var itens [] IItem = item.Builder().add(item).buildList()
-	var endereco IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
-	var cliente ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
 
+	valido, error := pedido.EValido()
+
 	assert.NotNil(t, pedido)
-	assert.NotNil(t, pedido.GetItens())
+	assert.True(t, valido)
+	assert.Nil(t, error)
+	assert.Equal(t, float32(55.9), pedido.GetFrete())
+	assert.Equal(t, float32(29855.9), pedido.GetTotal())
 	assert.NotNil(t, pedido.GetCliente())
-	assert.NotNil(t, pedido.GetEnderecoEntrega())
-	assert.Equal(t, 17555.9, pedido.GetTotal())
-
-	// Validando o Item
-	assert.Empty(t, pedido.GetItens())
-	assert.NotNil(t, pedido.GetItens()[0])
-	assert.Equal(t, true, pedido.GetItens()[0].EValido())
-	assert.NotNil(t, pedido.GetItens()[0].GetQuantidade())
-	assert.Equal(t, 1, pedido.GetItens()[0].GetQuantidade())
-
-	// Validado o Produto
-	assert.NotNil(t, pedido.GetItens()[0].GetProduto())
-	assert.Equal(t, true, pedido.GetItens()[0].GetProduto().EValido())
-	assert.NotNil(t, pedido.GetItens()[0].GetProduto().GetNome())
-	assert.Equal(t, "MacBook Pro 15 2022", pedido.GetItens()[0].GetProduto().GetNome())
-	assert.NotNil(t, pedido.GetItens()[0].GetProduto().GetPreco())
-	assert.Equal(t, 17500.0, pedido.GetItens()[0].GetProduto().GetPreco())
-	assert.True(t, pedido.GetItens()[0].GetProduto().EstoqueEstaDisponivel())
-
-	// Validado o Cliente
-	assert.NotNil(t, pedido.GetCliente())
-	assert.Equal(t, true, pedido.GetCliente().EValido())
-	assert.NotNil(t, pedido.GetCliente().GetNome())
 	assert.Equal(t, "Diego Morais", pedido.GetCliente().GetNome())
-	assert.NotNil(t, pedido.GetCliente().GetDocumentoIdentificacao())
-	assert.Equal(t, "99999999999", pedido.GetCliente().GetDocumentoIdentificacao())
-	assert.NotNil(t, pedido.GetCliente().GetTelefone())
-	assert.Equal(t, "19 9 98767584", pedido.GetCliente().GetTelefone())
-
-	// Validado a Entrega
 	assert.NotNil(t, pedido.GetEnderecoEntrega())
-	assert.Equal(t, true, pedido.GetEnderecoEntrega().EValido())
-	assert.NotNil(t, pedido.GetEnderecoEntrega().GetRua())
 	assert.Equal(t, "Rua new street", pedido.GetEnderecoEntrega().GetRua())
-	assert.NotNil(t, pedido.GetEnderecoEntrega().GetNumero())
-	assert.Equal(t, "490", pedido.GetEnderecoEntrega().GetNumero())
-	assert.NotNil(t, pedido.GetEnderecoEntrega().GetCep())
-	assert.Equal(t, "490098398", pedido.GetEnderecoEntrega().GetCep())
-	assert.NotNil(t, pedido.GetEnderecoEntrega().GetCidade())
-	assert.Equal(t, "São Paulo", pedido.GetEnderecoEntrega().GetCidade())
+	assert.NotNil(t, pedido.GetItens())
+	assert.NotEmpty(t, pedido.GetItens())
+	assert.Equal(t, "MacBook Pro 15 2022", pedido.GetItens()[0].GetProduto().GetNome())
+
+}
+
+func TestPedidoComClienteInvalidoSemDocumentoIdentificacao(t *testing.T) {
+	t.Parallel()
+
+	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").Build()
+
+	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+
+	valido, error := pedido.EValido()
+
+	assert.NotNil(t, pedido)
+	assert.False(t, valido)
+	assert.Equal(t, "documento de identificação do cliente está vazio", error.Error())
+
+}
+
+func TestPedidoSemCliente(t *testing.T) {
+	t.Parallel()
+
+	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+
+	var pedido IPedido = Builder().SetItens(itens).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+
+	valido, error := pedido.EValido()
+
+	assert.NotNil(t, pedido)
+	assert.False(t, valido)
+	assert.Equal(t, "cliente não foi encontrado", error.Error())
+
+}
+
+func TestPedidoComEnderecoSemCep(t *testing.T) {
+	t.Parallel()
+
+	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+
+	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+
+	valido, error := pedido.EValido()
+
+	assert.NotNil(t, pedido)
+	assert.False(t, valido)
+	assert.Equal(t, "cep do endereço não foi informada", error.Error())
+
+}
+
+func TestPedidoSemEndereco(t *testing.T) {
+	t.Parallel()
+
+	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
+	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+
+	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetFrete(55.9).Build()
+
+	valido, error := pedido.EValido()
+
+	assert.NotNil(t, pedido)
+	assert.False(t, valido)
+	assert.Equal(t, "endereço não foi encontrados", error.Error())
+
+}
+
+func TestPedidoComItemInvalidoSemProduto(t *testing.T) {
+	t.Parallel()
+
+	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.Builder().SetQuantidade(1).Build()
+	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+
+	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+
+	valido, error := pedido.EValido()
+
+	assert.NotNil(t, pedido)
+	assert.False(t, valido)
+	assert.Equal(t, "produto não encontrado", error.Error())
+
+}
+
+func TestPedidoSemItens(t *testing.T) {
+	t.Parallel()
+
+	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+
+	var pedido IPedido = Builder().SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+
+	valido, error := pedido.EValido()
+
+	assert.NotNil(t, pedido)
+	assert.False(t, valido)
+	assert.Equal(t, "itens não foram encontrados", error.Error())
 
 }
