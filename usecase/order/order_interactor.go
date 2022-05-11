@@ -63,13 +63,11 @@ func (o orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) []ite
 
 func (o orderInteractor) _GetCustomer(customerID string) cliente.ICliente {
 	var customer customer.CustomerResponse = o.customerGateway.FindByCustomer(customerID)
-	var cliente cliente.ICliente = cliente.New().SetNome(customer.Name).SetDocumentoIdentificacao(customer.IdentificationDocument).SetTelefone(customer.Telephone).Build()
-	return cliente
+	return cliente.New().SetNome(customer.Name).SetDocumentoIdentificacao(customer.IdentificationDocument).SetTelefone(customer.Telephone).Build()
 }
 
 func (o orderInteractor) _GetAddress(address address.ShippingAddressRequest) endereco.IEndereco {
-	var endereco endereco.IEndereco = endereco.New().SetCep(address.Zipcode).SetCidade(address.City).SetNumero(address.Number).SetRua(address.Street).Build()
-	return endereco
+	return endereco.New().SetCep(address.Zipcode).SetCidade(address.City).SetNumero(address.Number).SetRua(address.Street).Build()
 }
 
 func (o orderInteractor) _GetItensData(itens []item.IItem) []itemUsecase.ItemDataRequest {
