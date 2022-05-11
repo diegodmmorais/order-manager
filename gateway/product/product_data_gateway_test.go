@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestFindByProduct(t *testing.T) {
+func Test_buscando_um_produto(t *testing.T) {
 	t.Parallel()
 
 	var productGateway product.IProductGateway = CreateProductGateway(MockProductApi{})

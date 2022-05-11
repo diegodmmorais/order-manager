@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestXxx(t *testing.T) {
+func Test_buscando_um_cliente(t *testing.T) {
 
 	var gateway customer.ICustomerGateway = CreateCustomerGateway(mockCustomerApi{})
 	customerResponse, err := gateway.FindByCustomer("#1")
