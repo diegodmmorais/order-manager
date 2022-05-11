@@ -1,5 +1,5 @@
 package order
 
 type IOrderGateway interface {
-	save(order OrderDataRequest) (string, error)
+	Save(orderData OrderDataRequest) (string, error)
 }

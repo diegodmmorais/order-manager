@@ -42,11 +42,11 @@ func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
 		},
 	}
 
-	orderID, erroData := o.orderGateway.save(orderDataRequest)
+	orderID, erroData := o.orderGateway.Save(orderDataRequest)
 	if erroData != nil {
 		return nil, erroData
 	}
-	return o.orderOutputBoundary.success(OrderInputData{OrderID: orderID, CustomerName: cliente.GetNome()}), nil
+	return o.orderOutputBoundary.Success(OrderInputData{OrderID: orderID, CustomerName: cliente.GetNome()}), nil
 }
 
 func (o *orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) *[]item.IItem {
