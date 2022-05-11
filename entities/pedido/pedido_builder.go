@@ -13,7 +13,7 @@ type pedidoBuilder struct {
 	frete    float32
 }
 
-func Builder() *pedidoBuilder {
+func New() *pedidoBuilder {
 	return &pedidoBuilder{}
 }
 
@@ -37,6 +37,6 @@ func (p *pedidoBuilder) SetFrete(frete float32) *pedidoBuilder {
 	return p
 }
 
-func (p *pedidoBuilder) Build() IPedido{
+func (p *pedidoBuilder) Build() IPedido {
 	return pedido{cliente: p.cliente, itens: p.itens, endereco: p.endereco, frete: p.frete}
 }

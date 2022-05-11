@@ -8,7 +8,7 @@ import (
 
 func TestClienteEValido(t *testing.T) {
 	t.Parallel()
-	var cliente ICliente = Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var cliente ICliente = New().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 
 	valido, error := cliente.EValido()
 
@@ -31,9 +31,9 @@ func TestClienteEValido(t *testing.T) {
 
 func TestClienteComNomeInvalido(t *testing.T) {
 	t.Parallel()
-	var cliente1 ICliente = Builder().SetNome("").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
-	var cliente2 ICliente = Builder().SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
-	var cliente3 ICliente = Builder().SetNome("  ").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var cliente1 ICliente = New().SetNome("").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var cliente2 ICliente = New().SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var cliente3 ICliente = New().SetNome("  ").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 
 	valido1, error1 := cliente1.EValido()
 	valido2, error2 := cliente2.EValido()
@@ -41,24 +41,23 @@ func TestClienteComNomeInvalido(t *testing.T) {
 
 	assert.NotNil(t, cliente1)
 	assert.False(t, valido1)
-	assert.Equal(t, "nome do cliente está vazio",  error1.Error())
+	assert.Equal(t, "nome do cliente está vazio", error1.Error())
 
 	assert.NotNil(t, cliente2)
 	assert.False(t, valido2)
-	assert.Equal(t, "nome do cliente está vazio",  error2.Error())
+	assert.Equal(t, "nome do cliente está vazio", error2.Error())
 
 	assert.NotNil(t, cliente3)
 	assert.False(t, valido3)
-	assert.Equal(t, "nome do cliente está vazio",  error3.Error())
+	assert.Equal(t, "nome do cliente está vazio", error3.Error())
 
 }
 
-
 func TestClienteComTelefoneInvalido(t *testing.T) {
 	t.Parallel()
-	var cliente1 ICliente = Builder().SetNome("Diego Morais").SetDocumentoIdentificacao("99999999999").Build()
-	var cliente2 ICliente = Builder().SetNome("Diego Morais").SetTelefone("").SetDocumentoIdentificacao("99999999999").Build()
-	var cliente3 ICliente = Builder().SetNome("Diego Morais").SetTelefone("  ").SetDocumentoIdentificacao("99999999999").Build()
+	var cliente1 ICliente = New().SetNome("Diego Morais").SetDocumentoIdentificacao("99999999999").Build()
+	var cliente2 ICliente = New().SetNome("Diego Morais").SetTelefone("").SetDocumentoIdentificacao("99999999999").Build()
+	var cliente3 ICliente = New().SetNome("Diego Morais").SetTelefone("  ").SetDocumentoIdentificacao("99999999999").Build()
 
 	valido1, error1 := cliente1.EValido()
 	valido2, error2 := cliente2.EValido()
@@ -66,23 +65,23 @@ func TestClienteComTelefoneInvalido(t *testing.T) {
 
 	assert.NotNil(t, cliente1)
 	assert.False(t, valido1)
-	assert.Equal(t, "telefone do cliente está vazio",  error1.Error())
+	assert.Equal(t, "telefone do cliente está vazio", error1.Error())
 
 	assert.NotNil(t, cliente2)
 	assert.False(t, valido2)
-	assert.Equal(t, "telefone do cliente está vazio",  error2.Error())
+	assert.Equal(t, "telefone do cliente está vazio", error2.Error())
 
 	assert.NotNil(t, cliente3)
 	assert.False(t, valido3)
-	assert.Equal(t, "telefone do cliente está vazio",  error3.Error())
+	assert.Equal(t, "telefone do cliente está vazio", error3.Error())
 
 }
 
 func TestClienteComDocumentoInvalido(t *testing.T) {
 	t.Parallel()
-	var cliente1 ICliente = Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").Build()
-	var cliente2 ICliente = Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("").Build()
-	var cliente3 ICliente = Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("  ").Build()
+	var cliente1 ICliente = New().SetNome("Diego Morais").SetTelefone("19 9 98767584").Build()
+	var cliente2 ICliente = New().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("").Build()
+	var cliente3 ICliente = New().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("  ").Build()
 
 	valido1, error1 := cliente1.EValido()
 	valido2, error2 := cliente2.EValido()
@@ -90,15 +89,14 @@ func TestClienteComDocumentoInvalido(t *testing.T) {
 
 	assert.NotNil(t, cliente1)
 	assert.False(t, valido1)
-	assert.Equal(t, "documento de identificação do cliente está vazio",  error1.Error())
+	assert.Equal(t, "documento de identificação do cliente está vazio", error1.Error())
 
 	assert.NotNil(t, cliente2)
 	assert.False(t, valido2)
-	assert.Equal(t, "documento de identificação do cliente está vazio",  error2.Error())
+	assert.Equal(t, "documento de identificação do cliente está vazio", error2.Error())
 
 	assert.NotNil(t, cliente3)
 	assert.False(t, valido3)
-	assert.Equal(t, "documento de identificação do cliente está vazio",  error3.Error())
+	assert.Equal(t, "documento de identificação do cliente está vazio", error3.Error())
 
 }
-

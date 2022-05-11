@@ -7,7 +7,7 @@ type enderecoBuilder struct {
 	cidade string
 }
 
-func Builder() *enderecoBuilder {
+func New() *enderecoBuilder {
 	return &enderecoBuilder{}
 }
 

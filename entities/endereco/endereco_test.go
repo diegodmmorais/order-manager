@@ -9,7 +9,7 @@ import (
 func TestEnderecoEValido(t *testing.T) {
 	t.Parallel()
 
-	var endereco IEndereco = Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var endereco IEndereco = New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
 	valido, erro := endereco.EValido()
 
 	assert.NotNil(t, endereco)
@@ -36,7 +36,7 @@ func TestEnderecoEValido(t *testing.T) {
 func TestEnderecoSemRua(t *testing.T) {
 	t.Parallel()
 
-	var endereco IEndereco = Builder().SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var endereco IEndereco = New().SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
 	valido, erro := endereco.EValido()
 
 	assert.NotNil(t, endereco)
@@ -45,12 +45,10 @@ func TestEnderecoSemRua(t *testing.T) {
 	assert.Equal(t, "rua do endereço não foi informada", erro.Error())
 }
 
-
-
 func TestEnderecoSemNumero(t *testing.T) {
 	t.Parallel()
 
-	var endereco IEndereco = Builder().SetRua("Rua new street").SetCep("490098398").SetCidade("São Paulo").Build()
+	var endereco IEndereco = New().SetRua("Rua new street").SetCep("490098398").SetCidade("São Paulo").Build()
 	valido, erro := endereco.EValido()
 
 	assert.NotNil(t, endereco)
@@ -59,11 +57,10 @@ func TestEnderecoSemNumero(t *testing.T) {
 	assert.Equal(t, "numero do endereço não foi informada", erro.Error())
 }
 
-
 func TestEnderecoSemCep(t *testing.T) {
 	t.Parallel()
 
-	var endereco IEndereco = Builder().SetRua("Rua new street").SetNumero("490").SetCidade("São Paulo").Build()
+	var endereco IEndereco = New().SetRua("Rua new street").SetNumero("490").SetCidade("São Paulo").Build()
 	valido, erro := endereco.EValido()
 
 	assert.NotNil(t, endereco)
@@ -75,7 +72,7 @@ func TestEnderecoSemCep(t *testing.T) {
 func TestEnderecoSemCidade(t *testing.T) {
 	t.Parallel()
 
-	var endereco IEndereco = Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").Build()
+	var endereco IEndereco = New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").Build()
 	valido, erro := endereco.EValido()
 
 	assert.NotNil(t, endereco)

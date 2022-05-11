@@ -6,7 +6,7 @@ type produtoBuilder struct {
 	estoqueEstaDisponivel bool
 }
 
-func Builder() *produtoBuilder {
+func New() *produtoBuilder {
 	return &produtoBuilder{}
 }
 

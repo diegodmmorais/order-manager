@@ -13,15 +13,15 @@ import (
 func TestPedidoEValido(t *testing.T) {
 	t.Parallel()
 
-	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
-	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
-	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
-	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
-	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
-	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.New().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.New().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.New().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.New().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.New().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 
-	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+	var pedido IPedido = New().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
 
 	valido, error := pedido.EValido()
 
@@ -43,15 +43,15 @@ func TestPedidoEValido(t *testing.T) {
 func TestPedidoComClienteInvalidoSemDocumentoIdentificacao(t *testing.T) {
 	t.Parallel()
 
-	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
-	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
-	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
-	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
-	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
-	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").Build()
+	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.New().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.New().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.New().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.New().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.New().SetNome("Diego Morais").SetTelefone("19 9 98767584").Build()
 
-	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+	var pedido IPedido = New().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
 
 	valido, error := pedido.EValido()
 
@@ -64,14 +64,14 @@ func TestPedidoComClienteInvalidoSemDocumentoIdentificacao(t *testing.T) {
 func TestPedidoSemCliente(t *testing.T) {
 	t.Parallel()
 
-	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
-	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
-	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
-	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
-	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.New().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.New().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.New().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.New().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
 
-	var pedido IPedido = Builder().SetItens(itens).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+	var pedido IPedido = New().SetItens(itens).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
 
 	valido, error := pedido.EValido()
 
@@ -84,15 +84,15 @@ func TestPedidoSemCliente(t *testing.T) {
 func TestPedidoComEnderecoSemCep(t *testing.T) {
 	t.Parallel()
 
-	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
-	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
-	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
-	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
-	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCidade("São Paulo").Build()
-	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.New().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.New().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.New().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.New().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.New().SetRua("Rua new street").SetNumero("490").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.New().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 
-	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+	var pedido IPedido = New().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
 
 	valido, error := pedido.EValido()
 
@@ -105,14 +105,14 @@ func TestPedidoComEnderecoSemCep(t *testing.T) {
 func TestPedidoSemEndereco(t *testing.T) {
 	t.Parallel()
 
-	var produto1 produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
-	var item1 item.IItem = item.Builder().SetProduto(produto1).SetQuantidade(1).Build()
-	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
-	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
-	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto2 produto.IProduto = produto.New().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.New().SetProduto(produto1).SetQuantidade(1).Build()
+	var item2 item.IItem = item.New().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.New().Add(item1).Add(item2).BuildList()
+	var cliente cliente.ICliente = cliente.New().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 
-	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetFrete(55.9).Build()
+	var pedido IPedido = New().SetItens(itens).SetCliente(cliente).SetFrete(55.9).Build()
 
 	valido, error := pedido.EValido()
 
@@ -125,14 +125,14 @@ func TestPedidoSemEndereco(t *testing.T) {
 func TestPedidoComItemInvalidoSemProduto(t *testing.T) {
 	t.Parallel()
 
-	var produto2 produto.IProduto = produto.Builder().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
-	var item1 item.IItem = item.Builder().SetQuantidade(1).Build()
-	var item2 item.IItem = item.Builder().SetProduto(produto2).SetQuantidade(1).Build()
-	var itens []item.IItem = item.Builder().Add(item1).Add(item2).BuildList()
-	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
-	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var produto2 produto.IProduto = produto.New().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
+	var item1 item.IItem = item.New().SetQuantidade(1).Build()
+	var item2 item.IItem = item.New().SetProduto(produto2).SetQuantidade(1).Build()
+	var itens []item.IItem = item.New().Add(item1).Add(item2).BuildList()
+	var endereco endereco.IEndereco = endereco.New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.New().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 
-	var pedido IPedido = Builder().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+	var pedido IPedido = New().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
 
 	valido, error := pedido.EValido()
 
@@ -145,10 +145,10 @@ func TestPedidoComItemInvalidoSemProduto(t *testing.T) {
 func TestPedidoSemItens(t *testing.T) {
 	t.Parallel()
 
-	var endereco endereco.IEndereco = endereco.Builder().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
-	var cliente cliente.ICliente = cliente.Builder().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
+	var endereco endereco.IEndereco = endereco.New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
+	var cliente cliente.ICliente = cliente.New().SetNome("Diego Morais").SetTelefone("19 9 98767584").SetDocumentoIdentificacao("99999999999").Build()
 
-	var pedido IPedido = Builder().SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
+	var pedido IPedido = New().SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(55.9).Build()
 
 	valido, error := pedido.EValido()
 

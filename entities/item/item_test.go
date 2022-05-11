@@ -10,8 +10,8 @@ import (
 func TestItenEValido(t *testing.T) {
 	t.Parallel()
 
-	var produto produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var item IItem = Builder().SetProduto(produto).SetQuantidade(1).Build()
+	var produto produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var item IItem = New().SetProduto(produto).SetQuantidade(1).Build()
 	valido, erro := item.EValido()
 
 	assert.NotNil(t, item)
@@ -25,8 +25,8 @@ func TestItenEValido(t *testing.T) {
 func TestItenComProdutoInvalido(t *testing.T) {
 	t.Parallel()
 
-	var produto produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetEstoqueEstaDisponivel(true).Build()
-	var item IItem = Builder().SetProduto(produto).SetQuantidade(1).Build()
+	var produto produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetEstoqueEstaDisponivel(true).Build()
+	var item IItem = New().SetProduto(produto).SetQuantidade(1).Build()
 	valido, erro := item.EValido()
 
 	assert.NotNil(t, item)
@@ -40,7 +40,7 @@ func TestItenComProdutoInvalido(t *testing.T) {
 func TestItenSemProduto(t *testing.T) {
 	t.Parallel()
 
-	var item IItem = Builder().SetQuantidade(1).Build()
+	var item IItem = New().SetQuantidade(1).Build()
 	valido, erro := item.EValido()
 
 	assert.NotNil(t, item)
@@ -54,8 +54,8 @@ func TestItenSemProduto(t *testing.T) {
 func TestItenQuantidadeDisponivel(t *testing.T) {
 	t.Parallel()
 
-	var produto produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var item IItem = Builder().SetProduto(produto).Build()
+	var produto produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var item IItem = New().SetProduto(produto).Build()
 	valido, erro := item.EValido()
 
 	assert.NotNil(t, item)
@@ -69,9 +69,9 @@ func TestItenQuantidadeDisponivel(t *testing.T) {
 func TestItensValidos(t *testing.T) {
 	t.Parallel()
 
-	var produto produto.IProduto = produto.Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
-	var item IItem = Builder().SetProduto(produto).SetQuantidade(1).Build()
-	var itens []IItem = Builder().Add(item).BuildList()
+	var produto produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var item IItem = New().SetProduto(produto).SetQuantidade(1).Build()
+	var itens []IItem = New().Add(item).BuildList()
 
 	for _, it := range itens {
 		valido, erro := item.EValido()

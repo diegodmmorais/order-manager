@@ -6,7 +6,7 @@ type clienteBuilder struct {
 	documentoIdentificacao string
 }
 
-func Builder() *clienteBuilder {
+func New() *clienteBuilder {
 	return &clienteBuilder{}
 }
 

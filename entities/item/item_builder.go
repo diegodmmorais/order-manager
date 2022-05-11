@@ -8,7 +8,7 @@ type itemBuilder struct {
 	itens     []IItem
 }
 
-func Builder() *itemBuilder {
+func New() *itemBuilder {
 	return &itemBuilder{}
 }
 

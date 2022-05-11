@@ -8,7 +8,7 @@ import (
 
 func TestProdutoEValido(t *testing.T) {
 	t.Parallel()
-	var produto IProduto = Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto IProduto = New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
 
 	valido, _ := produto.EValido()
 
@@ -24,7 +24,7 @@ func TestProdutoEValido(t *testing.T) {
 
 func TestProdutoComNomeVazio(t *testing.T) {
 	t.Parallel()
-	var produto IProduto = Builder().SetNome("").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto IProduto = New().SetNome("").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
 
 	valido, mensage := produto.EValido()
 
@@ -42,7 +42,7 @@ func TestProdutoComNomeVazio(t *testing.T) {
 
 func TestProdutoComNomeEmBranco(t *testing.T) {
 	t.Parallel()
-	var produto IProduto = Builder().SetNome("   ").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
+	var produto IProduto = New().SetNome("   ").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
 
 	valido, mensage := produto.EValido()
 
@@ -60,7 +60,7 @@ func TestProdutoComNomeEmBranco(t *testing.T) {
 
 func TestProdutoComPrecoZero(t *testing.T) {
 	t.Parallel()
-	var produto IProduto = Builder().SetNome("MacBook Pro 15 2022").SetEstoqueEstaDisponivel(true).Build()
+	var produto IProduto = New().SetNome("MacBook Pro 15 2022").SetEstoqueEstaDisponivel(true).Build()
 
 	valido, mensage := produto.EValido()
 
@@ -78,7 +78,7 @@ func TestProdutoComPrecoZero(t *testing.T) {
 
 func TestProdutoComEstoqueIndisponivel(t *testing.T) {
 	t.Parallel()
-	var produto IProduto = Builder().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(false).Build()
+	var produto IProduto = New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(false).Build()
 
 	valido, mensage := produto.EValido()
 
