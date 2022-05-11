@@ -1,6 +1,6 @@
 package item
 
-import "github.com/diego-dm-morais/order-manager/entities/produto"
+import "github.com/diego-dm-morais/order-manager/entity/produto"
 
 type itemBuilder struct {
 	produto   produto.IProduto

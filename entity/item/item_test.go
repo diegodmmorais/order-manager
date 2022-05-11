@@ -3,7 +3,7 @@ package item
 import (
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/entities/produto"
+	"github.com/diego-dm-morais/order-manager/entity/produto"
 	"github.com/stretchr/testify/assert"
 )
 

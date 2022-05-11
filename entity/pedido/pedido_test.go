@@ -3,10 +3,10 @@ package pedido
 import (
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/entities/cliente"
-	"github.com/diego-dm-morais/order-manager/entities/endereco"
-	"github.com/diego-dm-morais/order-manager/entities/item"
-	"github.com/diego-dm-morais/order-manager/entities/produto"
+	"github.com/diego-dm-morais/order-manager/entity/cliente"
+	"github.com/diego-dm-morais/order-manager/entity/endereco"
+	"github.com/diego-dm-morais/order-manager/entity/item"
+	"github.com/diego-dm-morais/order-manager/entity/produto"
 	"github.com/stretchr/testify/assert"
 )
 

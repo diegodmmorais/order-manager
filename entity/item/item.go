@@ -3,7 +3,7 @@ package item
 import (
 	"fmt"
 
-	"github.com/diego-dm-morais/order-manager/entities/produto"
+	"github.com/diego-dm-morais/order-manager/entity/produto"
 )
 
 type item struct {

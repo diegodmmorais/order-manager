@@ -3,9 +3,9 @@ package pedido
 import (
 	"fmt"
 
-	"github.com/diego-dm-morais/order-manager/entities/cliente"
-	"github.com/diego-dm-morais/order-manager/entities/endereco"
-	"github.com/diego-dm-morais/order-manager/entities/item"
+	"github.com/diego-dm-morais/order-manager/entity/cliente"
+	"github.com/diego-dm-morais/order-manager/entity/endereco"
+	"github.com/diego-dm-morais/order-manager/entity/item"
 )
 
 type pedido struct {
