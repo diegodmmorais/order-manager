@@ -7,7 +7,7 @@ type produtoBuilder struct {
 }
 
 func New() *produtoBuilder {
-	return &produtoBuilder{}
+	return new(produtoBuilder)
 }
 
 func (p *produtoBuilder) SetNome(nome string) *produtoBuilder {

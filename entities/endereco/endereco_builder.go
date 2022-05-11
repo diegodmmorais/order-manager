@@ -8,7 +8,7 @@ type enderecoBuilder struct {
 }
 
 func New() *enderecoBuilder {
-	return &enderecoBuilder{}
+	return new(enderecoBuilder)
 }
 
 func (e *enderecoBuilder) SetRua(rua string) *enderecoBuilder {

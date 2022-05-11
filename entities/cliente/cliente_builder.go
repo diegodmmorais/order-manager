@@ -7,7 +7,7 @@ type clienteBuilder struct {
 }
 
 func New() *clienteBuilder {
-	return &clienteBuilder{}
+	return new(clienteBuilder)
 }
 
 func (c *clienteBuilder) SetNome(nome string) *clienteBuilder {

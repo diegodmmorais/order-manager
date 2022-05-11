@@ -14,7 +14,7 @@ type pedidoBuilder struct {
 }
 
 func New() *pedidoBuilder {
-	return &pedidoBuilder{}
+	return new(pedidoBuilder)
 }
 
 func (p *pedidoBuilder) SetCliente(cliente cliente.ICliente) *pedidoBuilder {

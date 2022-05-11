@@ -9,7 +9,7 @@ type itemBuilder struct {
 }
 
 func New() *itemBuilder {
-	return &itemBuilder{}
+	return new(itemBuilder)
 }
 
 func (i *itemBuilder) SetProduto(produto produto.IProduto) *itemBuilder {
