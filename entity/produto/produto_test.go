@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestProdutoEValido(t *testing.T) {
+func Test_produto_e_valido(t *testing.T) {
 	t.Parallel()
 	var produto IProduto = New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
 
@@ -22,7 +22,7 @@ func TestProdutoEValido(t *testing.T) {
 	assert.True(t, produto.EstoqueEstaDisponivel())
 }
 
-func TestProdutoComNomeVazio(t *testing.T) {
+func Test_produto_com_nome_vazio(t *testing.T) {
 	t.Parallel()
 	var produto IProduto = New().SetNome("").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
 
@@ -40,7 +40,7 @@ func TestProdutoComNomeVazio(t *testing.T) {
 	assert.Equal(t, "nome do produto está vazio", mensage.Error())
 }
 
-func TestProdutoComNomeEmBranco(t *testing.T) {
+func Test_produto_com_nome_em_branco(t *testing.T) {
 	t.Parallel()
 	var produto IProduto = New().SetNome("   ").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
 
@@ -58,7 +58,7 @@ func TestProdutoComNomeEmBranco(t *testing.T) {
 	assert.Equal(t, "nome do produto está vazio", mensage.Error())
 }
 
-func TestProdutoComPrecoZero(t *testing.T) {
+func Test_produto_com_preco_zero(t *testing.T) {
 	t.Parallel()
 	var produto IProduto = New().SetNome("MacBook Pro 15 2022").SetEstoqueEstaDisponivel(true).Build()
 
@@ -76,7 +76,7 @@ func TestProdutoComPrecoZero(t *testing.T) {
 	assert.Equal(t, "preço do produto MacBook Pro 15 2022 está menor ou igual a zero", mensage.Error())
 }
 
-func TestProdutoComEstoqueIndisponivel(t *testing.T) {
+func Test_produto_com_estoque_indisponivel(t *testing.T) {
 	t.Parallel()
 	var produto IProduto = New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(false).Build()
 

@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPedidoEValido(t *testing.T) {
+func Test_pedido_e_valido(t *testing.T) {
 	t.Parallel()
 
 	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
@@ -40,7 +40,7 @@ func TestPedidoEValido(t *testing.T) {
 
 }
 
-func TestPedidoComClienteInvalidoSemDocumentoIdentificacao(t *testing.T) {
+func Test_pedido_com_cliente_invalido_sem_documento_de_identificacao(t *testing.T) {
 	t.Parallel()
 
 	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
@@ -61,7 +61,7 @@ func TestPedidoComClienteInvalidoSemDocumentoIdentificacao(t *testing.T) {
 
 }
 
-func TestPedidoSemCliente(t *testing.T) {
+func Test_pedido_sem_cliente(t *testing.T) {
 	t.Parallel()
 
 	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
@@ -81,7 +81,7 @@ func TestPedidoSemCliente(t *testing.T) {
 
 }
 
-func TestPedidoComEnderecoSemCep(t *testing.T) {
+func Test_pedid_com_endereco_sem_cep(t *testing.T) {
 	t.Parallel()
 
 	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
@@ -102,7 +102,7 @@ func TestPedidoComEnderecoSemCep(t *testing.T) {
 
 }
 
-func TestPedidoSemEndereco(t *testing.T) {
+func Test_pedido_sem_endereco(t *testing.T) {
 	t.Parallel()
 
 	var produto1 produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
@@ -122,7 +122,7 @@ func TestPedidoSemEndereco(t *testing.T) {
 
 }
 
-func TestPedidoComItemInvalidoSemProduto(t *testing.T) {
+func Test_pedido_com_item_invalido_sem_produto(t *testing.T) {
 	t.Parallel()
 
 	var produto2 produto.IProduto = produto.New().SetNome("MacBook Pro 13 2022").SetPreco(12300.0).SetEstoqueEstaDisponivel(true).Build()
@@ -142,7 +142,7 @@ func TestPedidoComItemInvalidoSemProduto(t *testing.T) {
 
 }
 
-func TestPedidoSemItens(t *testing.T) {
+func Test_pedido_sem_itens(t *testing.T) {
 	t.Parallel()
 
 	var endereco endereco.IEndereco = endereco.New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()

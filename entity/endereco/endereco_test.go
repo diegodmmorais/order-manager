@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestEnderecoEValido(t *testing.T) {
+func Test_endereco_e_valido(t *testing.T) {
 	t.Parallel()
 
 	var endereco IEndereco = New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
@@ -33,7 +33,7 @@ func TestEnderecoEValido(t *testing.T) {
 
 }
 
-func TestEnderecoSemRua(t *testing.T) {
+func Test_endereco_sem_rua(t *testing.T) {
 	t.Parallel()
 
 	var endereco IEndereco = New().SetNumero("490").SetCep("490098398").SetCidade("São Paulo").Build()
@@ -45,7 +45,7 @@ func TestEnderecoSemRua(t *testing.T) {
 	assert.Equal(t, "rua do endereço não foi informada", erro.Error())
 }
 
-func TestEnderecoSemNumero(t *testing.T) {
+func Test_endereco_sem_numero(t *testing.T) {
 	t.Parallel()
 
 	var endereco IEndereco = New().SetRua("Rua new street").SetCep("490098398").SetCidade("São Paulo").Build()
@@ -57,7 +57,7 @@ func TestEnderecoSemNumero(t *testing.T) {
 	assert.Equal(t, "numero do endereço não foi informada", erro.Error())
 }
 
-func TestEnderecoSemCep(t *testing.T) {
+func Test_endereco_sem_cep(t *testing.T) {
 	t.Parallel()
 
 	var endereco IEndereco = New().SetRua("Rua new street").SetNumero("490").SetCidade("São Paulo").Build()
@@ -69,7 +69,7 @@ func TestEnderecoSemCep(t *testing.T) {
 	assert.Equal(t, "cep do endereço não foi informada", erro.Error())
 }
 
-func TestEnderecoSemCidade(t *testing.T) {
+func Test_endereco_sem_cidade(t *testing.T) {
 	t.Parallel()
 
 	var endereco IEndereco = New().SetRua("Rua new street").SetNumero("490").SetCep("490098398").Build()

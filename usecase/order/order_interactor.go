@@ -47,7 +47,8 @@ func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
 	if erroData != nil {
 		return nil, erroData
 	}
-	return o.orderOutputBoundary.Success(OrderInputData{OrderID: orderID, CustomerName: cliente.GetNome()}), nil
+	
+	return o.orderOutputBoundary.Success(OrderInputData{OrderID: orderID, CustomerName: cliente.GetNome()})
 }
 
 func (o orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) []item.IItem {

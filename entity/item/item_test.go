@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestItenEValido(t *testing.T) {
+func Test_iten_e_valido(t *testing.T) {
 	t.Parallel()
 
 	var produto produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
@@ -22,7 +22,7 @@ func TestItenEValido(t *testing.T) {
 	assert.Nil(t, erro)
 }
 
-func TestItenComProdutoInvalido(t *testing.T) {
+func Test_iten_com_produto_invalido(t *testing.T) {
 	t.Parallel()
 
 	var produto produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetEstoqueEstaDisponivel(true).Build()
@@ -37,7 +37,7 @@ func TestItenComProdutoInvalido(t *testing.T) {
 	assert.Equal(t, "preço do produto MacBook Pro 15 2022 está menor ou igual a zero", erro.Error())
 }
 
-func TestItenSemProduto(t *testing.T) {
+func Test_iten_sem_produto(t *testing.T) {
 	t.Parallel()
 
 	var item IItem = New().SetQuantidade(1).Build()
@@ -51,7 +51,7 @@ func TestItenSemProduto(t *testing.T) {
 	assert.Equal(t, "produto não encontrado", erro.Error())
 }
 
-func TestItenQuantidadeDisponivel(t *testing.T) {
+func Test_iten_quantidade_disponivel(t *testing.T) {
 	t.Parallel()
 
 	var produto produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()
@@ -66,7 +66,7 @@ func TestItenQuantidadeDisponivel(t *testing.T) {
 	assert.Equal(t, "quantidade está igual a zero", erro.Error())
 }
 
-func TestItensValidos(t *testing.T) {
+func Test_itens_validos(t *testing.T) {
 	t.Parallel()
 
 	var produto produto.IProduto = produto.New().SetNome("MacBook Pro 15 2022").SetPreco(17500.0).SetEstoqueEstaDisponivel(true).Build()

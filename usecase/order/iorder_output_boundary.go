@@ -1,5 +1,5 @@
 package order
 
 type IOrderOutputBoundary interface {
-	Success(orderInput OrderInputData) *OrderResponse
+	Success(orderInput OrderInputData) (*OrderResponse, error)
 }

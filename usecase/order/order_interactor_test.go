@@ -12,8 +12,8 @@ import (
 
 var orderInputBoundary IOrderInputBoundary = CreateOrderInputBoundary(MockOrderOutputBoundary{}, product.MockProductGateway{}, customer.MockCustomerGateway{}, MockOrderGateway{})
 
-func TestSalvarPedido(t *testing.T) {
-
+func Test_salvar_pedido(t *testing.T) {
+	t.Parallel()
 	response, erro := orderInputBoundary.Salvar(OrderRequest{
 		CustomerID: "1",
 		Freight:    55.6,
@@ -47,8 +47,8 @@ func TestSalvarPedido(t *testing.T) {
 
 }
 
-func TestSalvarPedidoSemItens(t *testing.T) {
-
+func Test_salvar_pedido_sem_itens(t *testing.T) {
+	t.Parallel()
 	response, erro := orderInputBoundary.Salvar(OrderRequest{
 		CustomerID: "1",
 		Freight:    55.6,
@@ -67,8 +67,8 @@ func TestSalvarPedidoSemItens(t *testing.T) {
 
 }
 
-func TestSalvarPedidoComErroAoPersistir(t *testing.T) {
-
+func Test_salvar_pedido_com_erro_ao_persistir(t *testing.T) {
+	t.Parallel()
 	var orderInputBoundary IOrderInputBoundary = &orderInteractor{
 		orderOutputBoundary: MockOrderOutputBoundary{},
 		productGateway:      product.MockProductGateway{},
