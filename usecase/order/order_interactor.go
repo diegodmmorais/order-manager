@@ -47,14 +47,17 @@ func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
 	if erroData != nil {
 		return nil, erroData
 	}
-	
+
 	return o.orderOutputBoundary.Success(OrderInputData{OrderID: orderID, CustomerName: cliente.GetNome()})
 }
 
 func (o orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) []item.IItem {
 	var itens []item.IItem
 	for _, it := range itensRequest {
-		var product product.ProductResponse = o.productGateway.FindByProduct(it.ProductID)
+		product, err := o.productGateway.FindByProduct(it.ProductID)
+		if err != nil {
+			return make([]item.IItem, 0)
+		}
 		var produto produto.IProduto = produto.New().SetNome(product.Nome).SetPreco(product.Price).SetEstoqueEstaDisponivel(product.EstoqueEstaDisponivel).Build()
 		var item item.IItem = item.New().SetProduto(produto).SetQuantidade(it.Amount).Build()
 		itens = append(itens, item)

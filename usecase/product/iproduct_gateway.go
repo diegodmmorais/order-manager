@@ -1,5 +1,5 @@
 package product
 
 type IProductGateway interface {
-	FindByProduct(productID string) ProductResponse
+	FindByProduct(productID string) (*ProductResponse, error)
 }
