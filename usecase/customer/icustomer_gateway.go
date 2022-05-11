@@ -1,5 +1,5 @@
 package customer
 
 type ICustomerGateway interface {
-	FindByCustomer(customerID string) CustomerResponse
+	FindByCustomer(customerID string) (CustomerResponse, error)
 }

@@ -54,10 +54,7 @@ func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
 func (o orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) []item.IItem {
 	var itens []item.IItem
 	for _, it := range itensRequest {
-		product, err := o.productGateway.FindByProduct(it.ProductID)
-		if err != nil {
-			return make([]item.IItem, 0)
-		}
+		product, _ := o.productGateway.FindByProduct(it.ProductID)
 		var produto produto.IProduto = produto.New().SetNome(product.Nome).SetPreco(product.Price).SetEstoqueEstaDisponivel(product.EstoqueEstaDisponivel).Build()
 		var item item.IItem = item.New().SetProduto(produto).SetQuantidade(it.Amount).Build()
 		itens = append(itens, item)
@@ -66,7 +63,7 @@ func (o orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) []ite
 }
 
 func (o orderInteractor) _GetCustomer(customerID string) cliente.ICliente {
-	var customer customer.CustomerResponse = o.customerGateway.FindByCustomer(customerID)
+	customer, _ := o.customerGateway.FindByCustomer(customerID)
 	return cliente.New().SetNome(customer.Name).SetDocumentoIdentificacao(customer.IdentificationDocument).SetTelefone(customer.Telephone).Build()
 }
 
