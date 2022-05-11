@@ -20,10 +20,11 @@ type orderInteractor struct {
 }
 
 func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
-	itens := *o._GetItens(order.Items)
-	cliente := *o._GetCustomer(order.CustomerID)
-	endereco := *o._GetAddress(order.ShippingAddress)
+	var itens []item.IItem = o._GetItens(order.Items)
+	var cliente cliente.ICliente = o._GetCustomer(order.CustomerID)
+	var endereco endereco.IEndereco = o._GetAddress(order.ShippingAddress)
 	var pedido pedido.IPedido = pedido.New().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(order.Freight).Build()
+
 	_, erro := pedido.EValido()
 	if erro != nil {
 		return nil, erro
@@ -49,7 +50,7 @@ func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
 	return o.orderOutputBoundary.Success(OrderInputData{OrderID: orderID, CustomerName: cliente.GetNome()}), nil
 }
 
-func (o *orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) *[]item.IItem {
+func (o orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) []item.IItem {
 	var itens []item.IItem
 	for _, it := range itensRequest {
 		var product product.ProductResponse = o.productGateway.FindByProduct(it.ProductID)
@@ -57,21 +58,21 @@ func (o *orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) *[]i
 		var item item.IItem = item.New().SetProduto(produto).SetQuantidade(it.Amount).Build()
 		itens = append(itens, item)
 	}
-	return &itens
+	return itens
 }
 
-func (o *orderInteractor) _GetCustomer(customerID string) *cliente.ICliente {
+func (o orderInteractor) _GetCustomer(customerID string) cliente.ICliente {
 	var customer customer.CustomerResponse = o.customerGateway.FindByCustomer(customerID)
 	var cliente cliente.ICliente = cliente.New().SetNome(customer.Name).SetDocumentoIdentificacao(customer.IdentificationDocument).SetTelefone(customer.Telephone).Build()
-	return &cliente
+	return cliente
 }
 
-func (o *orderInteractor) _GetAddress(address address.ShippingAddressRequest) *endereco.IEndereco {
+func (o orderInteractor) _GetAddress(address address.ShippingAddressRequest) endereco.IEndereco {
 	var endereco endereco.IEndereco = endereco.New().SetCep(address.Zipcode).SetCidade(address.City).SetNumero(address.Number).SetRua(address.Street).Build()
-	return &endereco
+	return endereco
 }
 
-func (o *orderInteractor) _GetItensData(itens []item.IItem) []itemUsecase.ItemDataRequest {
+func (o orderInteractor) _GetItensData(itens []item.IItem) []itemUsecase.ItemDataRequest {
 	var itensData []itemUsecase.ItemDataRequest
 	for _, it := range itens {
 		itensData = append(itensData, itemUsecase.ItemDataRequest{
