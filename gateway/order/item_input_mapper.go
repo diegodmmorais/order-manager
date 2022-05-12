@@ -1,7 +1,7 @@
 package order
 
 type ItemInputMapper struct {
-	ProductName string
-	Price       float32
-	Amount      uint32
+	ProductName string  `bson:"product_name"`
+	Price       float32 `bson:"price"`
+	Amount      uint32  `bson:"amount"`
 }
