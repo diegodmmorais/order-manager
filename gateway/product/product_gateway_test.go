@@ -10,7 +10,14 @@ import (
 func Test_buscando_um_produto(t *testing.T) {
 	t.Parallel()
 
-	var productGateway product.IProductGateway = CreateProductGateway(MockProductApi{})
+	mockProductApi := new(MockProductApi)
+	var productGateway product.IProductGateway = CreateProductGateway(mockProductApi)
+
+	mockProductApi.On("FindByProduct").Return(ProductOutputMapper{
+		Nome:                  "Macbook 15 pro",
+		Price:                 float32(17500),
+		EstoqueEstaDisponivel: true,
+	}, nil)
 
 	response, err := productGateway.FindByProduct("#1")
 

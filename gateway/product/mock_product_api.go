@@ -1,13 +1,13 @@
 package product
 
+import "github.com/stretchr/testify/mock"
+
 type MockProductApi struct {
-	IProductApi
+	mock.Mock
 }
 
-func (p MockProductApi) FindByProduct(productID string) (ProductResponseMapper, error) {
-	return ProductResponseMapper{
-		Nome:                  "Macbook 15 pro",
-		Price:                 17500,
-		EstoqueEstaDisponivel: true,
-	}, nil
+func (mock *MockProductApi) FindByProduct(productID string) (ProductOutputMapper, error) {
+	args := mock.Called()
+	result := args.Get(0)
+	return result.(ProductOutputMapper), args.Error(1)
 }

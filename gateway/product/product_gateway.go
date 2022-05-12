@@ -3,13 +3,12 @@ package product
 import "github.com/diego-dm-morais/order-manager/usecase/product"
 
 type productGateway struct {
-	product.IProductGateway
 	productApi IProductApi
 }
 
-func (p productGateway) FindByProduct(productID string) (*product.ProductOutputData, error) {
+func (p productGateway) FindByProduct(productID string) (product.ProductOutputData, error) {
 	productResponse, err := p.productApi.FindByProduct(productID)
-	return &product.ProductOutputData{
+	return product.ProductOutputData{
 		Nome:                  productResponse.Nome,
 		Price:                 productResponse.Price,
 		EstoqueEstaDisponivel: productResponse.EstoqueEstaDisponivel,

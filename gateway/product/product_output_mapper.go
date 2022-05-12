@@ -1,6 +1,6 @@
 package product
 
-type ProductResponseMapper struct {
+type ProductOutputMapper struct {
 	Nome                  string
 	Price                 float32
 	EstoqueEstaDisponivel bool

@@ -19,7 +19,7 @@ func Test_salvar_pedido(t *testing.T) {
 	mockIOrderGateway := new(MockOrderGateway)
 	orderInputBoundary := CreateOrderInputBoundary(mockOrderOutput, mockIProductGateway, mockICustomerGateway, mockIOrderGateway)
 
-	mockIProductGateway.On("FindByProduct").Return(&product.ProductOutputData{
+	mockIProductGateway.On("FindByProduct").Return(product.ProductOutputData{
 		Nome:                  "Macbook pro 15",
 		Price:                 float32(17500),
 		EstoqueEstaDisponivel: true,
@@ -115,7 +115,7 @@ func Test_salvar_pedido_erro_ao_salvar_pedido(t *testing.T) {
 	mockIOrderGateway := new(MockOrderGateway)
 	orderInputBoundary := CreateOrderInputBoundary(mockOrderOutput, mockIProductGateway, mockICustomerGateway, mockIOrderGateway)
 
-	mockIProductGateway.On("FindByProduct").Return(&product.ProductOutputData{
+	mockIProductGateway.On("FindByProduct").Return(product.ProductOutputData{
 		Nome:                  "Macbook pro 15",
 		Price:                 float32(17500),
 		EstoqueEstaDisponivel: true,

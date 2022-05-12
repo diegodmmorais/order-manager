@@ -6,8 +6,8 @@ type MockProductGateway struct {
 	mock.Mock
 }
 
-func (mock MockProductGateway) FindByProduct(productID string) (*ProductOutputData, error) {
+func (mock *MockProductGateway) FindByProduct(productID string) (ProductOutputData, error) {
 	args := mock.Called()
 	result := args.Get(0)
-	return result.(*ProductOutputData), args.Error(1)
+	return result.(ProductOutputData), args.Error(1)
 }
