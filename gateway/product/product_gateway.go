@@ -7,9 +7,9 @@ type productGateway struct {
 	productApi IProductApi
 }
 
-func (p productGateway) FindByProduct(productID string) (*product.ProductResponse, error) {
+func (p productGateway) FindByProduct(productID string) (*product.ProductOutputData, error) {
 	productResponse, err := p.productApi.FindByProduct(productID)
-	return &product.ProductResponse{
+	return &product.ProductOutputData{
 		Nome:                  productResponse.Nome,
 		Price:                 productResponse.Price,
 		EstoqueEstaDisponivel: productResponse.EstoqueEstaDisponivel,

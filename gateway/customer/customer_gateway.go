@@ -7,9 +7,9 @@ type customerGateway struct {
 	customerApi ICustomerApi
 }
 
-func (c customerGateway) FindByCustomer(customerID string) (customer.CustomerResponse, error) {
+func (c customerGateway) FindByCustomer(customerID string) (customer.CustomerOutputData, error) {
 	response, err := c.customerApi.FindByCustomer(customerID)
-	return customer.CustomerResponse{
+	return customer.CustomerOutputData{
 		IdentificationDocument: response.IdentificationDocument,
 		Name:                   response.Name,
 		Telephone:              response.Telephone,

@@ -1,6 +1,6 @@
 package product
 
-type ProductResponse struct {
+type ProductOutputData struct {
 	Nome                  string
 	Price                 float32
 	EstoqueEstaDisponivel bool

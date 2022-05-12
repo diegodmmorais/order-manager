@@ -1,7 +1,7 @@
 package customer
 
-type CustomerResponse struct{
+type CustomerOutputData struct {
 	Name                   string
-	Telephone               string
+	Telephone              string
 	IdentificationDocument string
 }

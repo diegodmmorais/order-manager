@@ -8,18 +8,19 @@ import (
 	"github.com/diego-dm-morais/order-manager/entity/produto"
 	"github.com/diego-dm-morais/order-manager/usecase/address"
 	"github.com/diego-dm-morais/order-manager/usecase/customer"
-	itemUsecase "github.com/diego-dm-morais/order-manager/usecase/item"
+	itemUseCase "github.com/diego-dm-morais/order-manager/usecase/item"
 	"github.com/diego-dm-morais/order-manager/usecase/product"
 )
 
-type orderInteractor struct {
-	orderOutputBoundary IOrderOutputBoundary
+type orderUseCase struct {
+	IOrderUseCase
+	orderOutputBoundary IOrderPresenter
 	productGateway      product.IProductGateway
 	customerGateway     customer.ICustomerGateway
 	orderGateway        IOrderGateway
 }
 
-func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
+func (o orderUseCase) Salvar(order OrderRequest) (*OrderResponse, error) {
 	var itens []item.IItem = o._GetItens(order.Items)
 	var cliente cliente.ICliente = o._GetCustomer(order.CustomerID)
 	var endereco endereco.IEndereco = o._GetAddress(order.ShippingAddress)
@@ -30,12 +31,12 @@ func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
 		return nil, erro
 	}
 
-	var orderDataRequest OrderDataRequest = OrderDataRequest{
+	var orderInputData OrderInputData = OrderInputData{
 		IdentificationDocument: cliente.GetDocumentoIdentificacao(),
 		Freight:                pedido.GetFrete(),
 		Total:                  pedido.GetTotal(),
 		Itens:                  o._GetItensData(itens),
-		ShippingAddress: address.ShippingAddressDataRequest{
+		ShippingAddress: address.AddressInputData{
 			Street:  endereco.GetRua(),
 			Number:  endereco.GetNumero(),
 			Zipcode: endereco.GetCep(),
@@ -43,15 +44,15 @@ func (o *orderInteractor) Salvar(order OrderRequest) (*OrderResponse, error) {
 		},
 	}
 
-	orderID, erroData := o.orderGateway.Save(orderDataRequest)
+	orderID, erroData := o.orderGateway.Save(orderInputData)
 	if erroData != nil {
 		return nil, erroData
 	}
 
-	return o.orderOutputBoundary.Success(OrderInputData{OrderID: orderID, CustomerName: cliente.GetNome()})
+	return o.orderOutputBoundary.Success(OrderSuccessInputData{OrderID: orderID, CustomerName: cliente.GetNome()})
 }
 
-func (o orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) []item.IItem {
+func (o orderUseCase) _GetItens(itensRequest []itemUseCase.ItemRequest) []item.IItem {
 	var itens []item.IItem
 	for _, it := range itensRequest {
 		product, _ := o.productGateway.FindByProduct(it.ProductID)
@@ -62,19 +63,19 @@ func (o orderInteractor) _GetItens(itensRequest []itemUsecase.ItemRequest) []ite
 	return itens
 }
 
-func (o orderInteractor) _GetCustomer(customerID string) cliente.ICliente {
+func (o orderUseCase) _GetCustomer(customerID string) cliente.ICliente {
 	customer, _ := o.customerGateway.FindByCustomer(customerID)
 	return cliente.New().SetNome(customer.Name).SetDocumentoIdentificacao(customer.IdentificationDocument).SetTelefone(customer.Telephone).Build()
 }
 
-func (o orderInteractor) _GetAddress(address address.ShippingAddressRequest) endereco.IEndereco {
+func (o orderUseCase) _GetAddress(address address.ShippingAddressRequest) endereco.IEndereco {
 	return endereco.New().SetCep(address.Zipcode).SetCidade(address.City).SetNumero(address.Number).SetRua(address.Street).Build()
 }
 
-func (o orderInteractor) _GetItensData(itens []item.IItem) []itemUsecase.ItemDataRequest {
-	var itensData []itemUsecase.ItemDataRequest
+func (o orderUseCase) _GetItensData(itens []item.IItem) []itemUseCase.ItemInputData {
+	var itensData []itemUseCase.ItemInputData
 	for _, it := range itens {
-		itensData = append(itensData, itemUsecase.ItemDataRequest{
+		itensData = append(itensData, itemUseCase.ItemInputData{
 			ProductName: it.GetProduto().GetNome(),
 			Price:       it.GetProduto().GetPreco(),
 			Amount:      it.GetQuantidade(),

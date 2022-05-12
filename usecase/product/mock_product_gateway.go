@@ -1,13 +1,13 @@
 package product
 
+import "github.com/stretchr/testify/mock"
+
 type MockProductGateway struct {
-	IProductGateway
+	mock.Mock
 }
 
-func (p MockProductGateway) FindByProduct(productID string) (*ProductResponse, error) {
-	return &ProductResponse{
-		Nome:                  "Macbook 15 pro",
-		Price:                 17.0090,
-		EstoqueEstaDisponivel: true,
-	}, nil
+func (mock MockProductGateway) FindByProduct(productID string) (*ProductOutputData, error) {
+	args := mock.Called()
+	result := args.Get(0)
+	return result.(*ProductOutputData), args.Error(1)
 }

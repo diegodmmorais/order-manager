@@ -1,6 +1,6 @@
 package address
 
-type ShippingAddressDataRequest struct {
+type AddressInputData struct {
 	Street  string
 	Number  string
 	Zipcode string

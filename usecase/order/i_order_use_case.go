@@ -1,5 +1,5 @@
 package order
 
-type IOrderInputBoundary interface {
+type IOrderUseCase interface {
 	Salvar(order OrderRequest) (*OrderResponse, error)
 }

@@ -1,13 +1,13 @@
 package customer
 
+import "github.com/stretchr/testify/mock"
+
 type MockCustomerGateway struct {
-	ICustomerGateway
+	mock.Mock
 }
 
-func (c MockCustomerGateway) FindByCustomer(customerID string) (CustomerResponse, error) {
-	return CustomerResponse{
-		Name:                   "Diego",
-		Telephone:              "19 9 9988 9989",
-		IdentificationDocument: "99999999999",
-	}, nil
+func (mock MockCustomerGateway) FindByCustomer(customerID string) (CustomerOutputData, error) {
+	args := mock.Called()
+	result := args.Get(0)
+	return result.(CustomerOutputData), args.Error(1)
 }

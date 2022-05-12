@@ -1,9 +1,15 @@
 package order
 
+import (
+	"github.com/stretchr/testify/mock"
+)
+
 type MockOrderGateway struct {
-	IOrderGateway
+	mock.Mock
 }
 
-func (o MockOrderGateway) Save(orderData OrderDataRequest) (string, error) {
-	return "#1", nil
+func (mock MockOrderGateway) Save(orderData OrderInputData) (string, error) {
+	args := mock.Called()
+	result := args.Get(0)
+	return result.(string), args.Error(1)
 }

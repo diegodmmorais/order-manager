@@ -9,8 +9,8 @@ import (
 
 func Test_imprimir_mensagem_sucesso(t *testing.T) {
 	t.Parallel()
-	var preseter order.IOrderOutputBoundary = CreateOrderPresenter()
-	var orderData order.OrderInputData = order.OrderInputData{OrderID: "#1", CustomerName: "Diego Morais"}
+	var preseter order.IOrderPresenter = CreateOrderPresenter()
+	var orderData order.OrderSuccessInputData = order.OrderSuccessInputData{OrderID: "#1", CustomerName: "Diego Morais"}
 	response, err := preseter.Success(orderData)
 
 	assert.NotNil(t, response)
@@ -28,8 +28,8 @@ func Test_imprimir_mensagem_sucesso(t *testing.T) {
 
 func Test_imprimir_mensagem_sucesso_sem_nome_do_cliente(t *testing.T) {
 	t.Parallel()
-	var preseter order.IOrderOutputBoundary = CreateOrderPresenter()
-	var orderData order.OrderInputData = order.OrderInputData{OrderID: "#1"}
+	var preseter order.IOrderPresenter = CreateOrderPresenter()
+	var orderData order.OrderSuccessInputData = order.OrderSuccessInputData{OrderID: "#1"}
 	response, err := preseter.Success(orderData)
 
 	assert.Nil(t, response)
@@ -41,8 +41,8 @@ func Test_imprimir_mensagem_sucesso_sem_nome_do_cliente(t *testing.T) {
 
 func Test_imprimir_mensagem_sucesso_sem_id_do_pedido(t *testing.T) {
 	t.Parallel()
-	var preseter order.IOrderOutputBoundary = CreateOrderPresenter()
-	var orderData order.OrderInputData = order.OrderInputData{CustomerName: "Diego Morais"}
+	var preseter order.IOrderPresenter = CreateOrderPresenter()
+	var orderData order.OrderSuccessInputData = order.OrderSuccessInputData{CustomerName: "Diego Morais"}
 	response, err := preseter.Success(orderData)
 
 	assert.Nil(t, response)

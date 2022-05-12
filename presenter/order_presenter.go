@@ -8,10 +8,10 @@ import (
 )
 
 type orderPresenter struct {
-	order.IOrderOutputBoundary
+	order.IOrderPresenter
 }
 
-func (p orderPresenter) Success(orderInput order.OrderInputData) (*order.OrderResponse, error) {
+func (p orderPresenter) Success(orderInput order.OrderSuccessInputData) (*order.OrderResponse, error) {
 	switch {
 	case orderInput.CustomerName == "" || strings.TrimSpace(orderInput.CustomerName) == "":
 		return nil, fmt.Errorf("nome do cliente não encontrado")
