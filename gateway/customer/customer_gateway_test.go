@@ -9,7 +9,15 @@ import (
 
 func Test_buscando_um_cliente(t *testing.T) {
 
-	var gateway customer.ICustomerGateway = CreateCustomerGateway(mockCustomerApi{})
+	mockCustomerApi := new(MockCustomerApi)
+	var gateway customer.ICustomerGateway = CreateCustomerGateway(mockCustomerApi)
+
+	mockCustomerApi.On("FindByCustomer").Return(CustomerOutPutMapper{
+		Name:                   "Diego Morais",
+		Telephone:              "+55 015 11 9 9999-9999",
+		IdentificationDocument: "000.000.000-00",
+	}, nil)
+
 	customerResponse, err := gateway.FindByCustomer("#1")
 
 	assert.NotNil(t, customerResponse)

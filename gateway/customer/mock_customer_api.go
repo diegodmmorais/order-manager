@@ -1,13 +1,13 @@
 package customer
 
-type mockCustomerApi struct {
-	ICustomerApi
+import "github.com/stretchr/testify/mock"
+
+type MockCustomerApi struct {
+	mock.Mock
 }
 
-func (c mockCustomerApi) FindByCustomer(customerID string) (CustomerResponseMapper, error) {
-	return CustomerResponseMapper{
-		Name:                   "Diego Morais",
-		Telephone:              "+55 015 11 9 9999-9999",
-		IdentificationDocument: "000.000.000-00",
-	}, nil
+func (mock *MockCustomerApi) FindByCustomer(customerID string) (CustomerOutPutMapper, error) {
+	args := mock.Called()
+	result := args.Get(0)
+	return result.(CustomerOutPutMapper), args.Error(1)
 }

@@ -1,6 +1,6 @@
 package customer
 
-type CustomerResponseMapper struct {
+type CustomerOutPutMapper struct {
 	Name                   string
 	Telephone              string
 	IdentificationDocument string

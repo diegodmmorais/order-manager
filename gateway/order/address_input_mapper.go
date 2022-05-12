@@ -1,6 +1,6 @@
 package order
 
-type ShippingAddressMapperRequest struct {
+type AddressInputMapper struct {
 	Street  string
 	Number  string
 	Zipcode string

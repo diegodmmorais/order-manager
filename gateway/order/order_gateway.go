@@ -11,20 +11,20 @@ type orderGateway struct {
 }
 
 func (o orderGateway) Save(orderData order.OrderInputData) (string, error) {
-	orderMapperResponse, error := o.orderRepository.Save(OrderMapperRequest{
+	id, error := o.orderRepository.Save(OrderInputMapper{
 		IdentificationDocument: orderData.IdentificationDocument,
 		Freight:                orderData.Freight,
 		Total:                  orderData.Total,
-		ShippingAddress: ShippingAddressMapperRequest{
+		ShippingAddress: AddressInputMapper{
 			Street:  orderData.ShippingAddress.Street,
 			Number:  orderData.ShippingAddress.Number,
 			Zipcode: orderData.ShippingAddress.Zipcode,
 			City:    orderData.ShippingAddress.City,
 		},
-		Itens: func(itens []item.ItemInputData) []ItemMapperRequest {
-			var itensMapper []ItemMapperRequest = make([]ItemMapperRequest, len(itens))
+		Itens: func(itens []item.ItemInputData) []ItemInputMapper {
+			var itensMapper []ItemInputMapper = make([]ItemInputMapper, len(itens))
 			for _, it := range itens {
-				itensMapper = append(itensMapper, ItemMapperRequest{
+				itensMapper = append(itensMapper, ItemInputMapper{
 					ProductName: it.ProductName,
 					Price:       it.Price,
 					Amount:      it.Amount,
@@ -33,5 +33,5 @@ func (o orderGateway) Save(orderData order.OrderInputData) (string, error) {
 			return itensMapper
 		}(orderData.Itens),
 	})
-	return orderMapperResponse.ID, error
+	return id, error
 }

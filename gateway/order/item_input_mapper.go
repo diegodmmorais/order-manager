@@ -1,6 +1,6 @@
 package order
 
-type ItemMapperRequest struct {
+type ItemInputMapper struct {
 	ProductName string
 	Price       float32
 	Amount      uint32
