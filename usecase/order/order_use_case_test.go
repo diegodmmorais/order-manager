@@ -17,7 +17,7 @@ func Test_salvar_pedido(t *testing.T) {
 	mockIProductGateway := new(product.MockProductGateway)
 	mockICustomerGateway := new(customer.MockCustomerGateway)
 	mockIOrderGateway := new(MockOrderGateway)
-	orderInputBoundary := CreateOrderInputBoundary(mockOrderOutput, mockIProductGateway, mockICustomerGateway, mockIOrderGateway)
+	orderInputBoundary := CreateOrderUseCase(mockOrderOutput, mockIProductGateway, mockICustomerGateway, mockIOrderGateway)
 
 	mockIProductGateway.On("FindByProduct").Return(product.ProductOutputData{
 		Nome:                  "Macbook pro 15",
@@ -79,7 +79,7 @@ func Test_salvar_pedido_sem_itens(t *testing.T) {
 	mockIProductGateway := new(product.MockProductGateway)
 	mockICustomerGateway := new(customer.MockCustomerGateway)
 	mockIOrderGateway := new(MockOrderGateway)
-	orderInputBoundary := CreateOrderInputBoundary(mockOrderOutput, mockIProductGateway, mockICustomerGateway, mockIOrderGateway)
+	orderInputBoundary := CreateOrderUseCase(mockOrderOutput, mockIProductGateway, mockICustomerGateway, mockIOrderGateway)
 
 	mockICustomerGateway.On("FindByCustomer").Return(customer.CustomerOutputData{
 		Name:                   "Diego Morais",
@@ -113,7 +113,7 @@ func Test_salvar_pedido_erro_ao_salvar_pedido(t *testing.T) {
 	mockIProductGateway := new(product.MockProductGateway)
 	mockICustomerGateway := new(customer.MockCustomerGateway)
 	mockIOrderGateway := new(MockOrderGateway)
-	orderInputBoundary := CreateOrderInputBoundary(mockOrderOutput, mockIProductGateway, mockICustomerGateway, mockIOrderGateway)
+	orderInputBoundary := CreateOrderUseCase(mockOrderOutput, mockIProductGateway, mockICustomerGateway, mockIOrderGateway)
 
 	mockIProductGateway.On("FindByProduct").Return(product.ProductOutputData{
 		Nome:                  "Macbook pro 15",

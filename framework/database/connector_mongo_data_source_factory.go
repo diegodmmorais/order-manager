@@ -1,4 +1,4 @@
-package connection
+package database
 
 import "github.com/diego-dm-morais/order-manager/repository"
 

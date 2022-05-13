@@ -5,7 +5,7 @@ import (
 	"github.com/diego-dm-morais/order-manager/usecase/product"
 )
 
-func CreateOrderInputBoundary(
+func CreateOrderUseCase(
 	orderOutputBoundary IOrderPresenter,
 	productGateway product.IProductGateway,
 	customerGateway customer.ICustomerGateway,
