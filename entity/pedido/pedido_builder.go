@@ -10,7 +10,7 @@ type pedidoBuilder struct {
 	cliente  cliente.ICliente
 	itens    []item.IItem
 	endereco endereco.IEndereco
-	frete    float32
+	frete    float64
 }
 
 func New() *pedidoBuilder {
@@ -32,7 +32,7 @@ func (p *pedidoBuilder) SetEnderecoEntrega(endereco endereco.IEndereco) *pedidoB
 	return p
 }
 
-func (p *pedidoBuilder) SetFrete(frete float32) *pedidoBuilder {
+func (p *pedidoBuilder) SetFrete(frete float64) *pedidoBuilder {
 	p.frete = frete
 	return p
 }

@@ -1,8 +1,8 @@
 package gateway
 
 type AddressInputMapper struct {
-	Street  string `bson:"street"`
-	Number  string `bson:"number"`
-	Zipcode string `bson:"zip_code"`
-	City    string `bson:"city"`
+	Street  string `bson:"street,omitempty"`
+	Number  string `bson:"number,omitempty"`
+	Zipcode string `bson:"zip_code,omitempty"`
+	City    string `bson:"city,omitempty"`
 }

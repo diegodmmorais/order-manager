@@ -20,12 +20,12 @@ func Test_salvar_pedio(t *testing.T) {
 
 	id, err := orderGateway.Save(order.OrderInputData{
 		IdentificationDocument: "999.999.999-00",
-		Freight:                float32(55.0),
+		Freight:                55.0,
 		Total:                  17555.0,
 		Itens: []item.ItemInputData{
 			{
 				ProductName: "Macbook pro 15",
-				Price:       float32(17500.0),
+				Price:       17500.0,
 				Amount:      1,
 			},
 		},
@@ -53,12 +53,12 @@ func Test_erro_ao_salvar_pedio(t *testing.T) {
 
 	id, err := orderGateway.Save(order.OrderInputData{
 		IdentificationDocument: "999.999.999-00",
-		Freight:                float32(55.0),
+		Freight:                55.0,
 		Total:                  17555.0,
 		Itens: []item.ItemInputData{
 			{
 				ProductName: "Macbook pro 15",
-				Price:       float32(17500.0),
+				Price:       17500.0,
 				Amount:      1,
 			},
 		},

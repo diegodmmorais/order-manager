@@ -2,6 +2,6 @@ package usecase
 
 type ItemInputData struct {
 	ProductName string
-	Price       float32
+	Price       float64
 	Amount      uint32
 }

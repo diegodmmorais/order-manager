@@ -15,7 +15,7 @@ func Test_buscando_um_produto(t *testing.T) {
 
 	mockProductApi.On("FindByProduct").Return(ProductOutputMapper{
 		Nome:                  "Macbook 15 pro",
-		Price:                 float32(17500),
+		Price:                 17500.0,
 		EstoqueEstaDisponivel: true,
 	}, nil)
 
@@ -28,7 +28,7 @@ func Test_buscando_um_produto(t *testing.T) {
 	assert.Equal(t, "Macbook 15 pro", response.Nome)
 
 	assert.NotNil(t, response.Price)
-	assert.Equal(t, float32(17500), response.Price)
+	assert.Equal(t, 17500.0, response.Price)
 
 	assert.NotNil(t, response.EstoqueEstaDisponivel)
 	assert.Equal(t, true, response.EstoqueEstaDisponivel)

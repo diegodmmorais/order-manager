@@ -2,7 +2,7 @@ package entity
 
 type produtoBuilder struct {
 	nome                  string
-	preco                 float32
+	preco                 float64
 	estoqueEstaDisponivel bool
 }
 
@@ -15,7 +15,7 @@ func (p *produtoBuilder) SetNome(nome string) *produtoBuilder {
 	return p
 }
 
-func (p *produtoBuilder) SetPreco(preco float32) *produtoBuilder {
+func (p *produtoBuilder) SetPreco(preco float64) *produtoBuilder {
 	p.preco = preco
 	return p
 }

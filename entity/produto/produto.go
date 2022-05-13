@@ -7,7 +7,7 @@ import (
 
 type produto struct {
 	nome                  string
-	preco                 float32
+	preco                 float64
 	estoqueEstaDisponivel bool
 }
 
@@ -26,7 +26,7 @@ func (p produto) EValido() (bool, error) {
 func (p produto) GetNome() string {
 	return p.nome
 }
-func (p produto) GetPreco() float32 {
+func (p produto) GetPreco() float64 {
 	return p.preco
 }
 

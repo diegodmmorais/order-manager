@@ -7,8 +7,8 @@ import (
 
 type OrderInputData struct {
 	IdentificationDocument string
-	Freight                float32
+	Freight                float64
 	Itens                  []item.ItemInputData
-	Total                  float32
+	Total                  float64
 	ShippingAddress        address.AddressInputData
 }

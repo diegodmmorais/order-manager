@@ -8,6 +8,6 @@ import (
 type OrderRequest struct {
 	CustomerID      string                         `json:"customer_id" validate:"required"`
 	ShippingAddress address.ShippingAddressRequest `json:"shipping_address"`
-	Freight         float32                        `json:"freight"`
+	Freight         float64                        `json:"freight"`
 	Items           []item.ItemRequest             `json:"items"`
 }

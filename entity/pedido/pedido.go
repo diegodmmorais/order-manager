@@ -2,6 +2,7 @@ package entity
 
 import (
 	"fmt"
+	"math"
 
 	cliente "github.com/diego-dm-morais/order-manager/entity/cliente"
 	endereco "github.com/diego-dm-morais/order-manager/entity/endereco"
@@ -12,7 +13,7 @@ type pedido struct {
 	cliente  cliente.ICliente
 	itens    []item.IItem
 	endereco endereco.IEndereco
-	frete    float32
+	frete    float64
 }
 
 func (p pedido) EValido() (bool, error) {
@@ -58,14 +59,18 @@ func (p pedido) GetItens() []item.IItem {
 	return p.itens
 }
 
-func (p pedido) GetFrete() float32 {
-	return p.frete
+func (p pedido) GetFrete() float64 {
+	return p._Round(p.frete)
 }
 
-func (p pedido) GetTotal() float32 {
-	var total float32 = 0.0
+func (p pedido) GetTotal() float64 {
+	var total float64 = 0.0
 	for _, it := range p.itens {
-		total = total + (it.GetProduto().GetPreco() * float32(it.GetQuantidade()))
+		total = total + (it.GetProduto().GetPreco() * float64(it.GetQuantidade()))
 	}
-	return total + p.frete
+	return p._Round(total + p.frete)
+}
+
+func (p pedido) _Round(valor float64) float64 {
+	return math.Floor(valor*100) / 100
 }

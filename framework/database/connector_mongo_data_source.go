@@ -25,12 +25,12 @@ func (c *connectorMongoDataSource) Connect() (*mongo.Client, error) {
 	ctx := context.TODO()
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 		return nil, err
 	}
 	err = client.Ping(ctx, nil)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 		return nil, err
 	}
 	return client, nil
@@ -43,7 +43,7 @@ func (c *connectorMongoDataSource) DataSource(client *mongo.Client, database, co
 func (c *connectorMongoDataSource) Disconnect(client *mongo.Client) (bool, error) {
 	err := client.Disconnect(context.TODO())
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 		return false, err
 	}
 	fmt.Println("Connection to MongoDB closed.")

@@ -11,6 +11,6 @@ type IPedido interface {
 	GetCliente() cliente.ICliente
 	GetEnderecoEntrega() endereco.IEndereco
 	GetItens() []item.IItem
-	GetTotal() float32
-	GetFrete() float32
+	GetTotal() float64
+	GetFrete() float64
 }

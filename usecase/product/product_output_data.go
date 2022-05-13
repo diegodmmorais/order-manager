@@ -2,6 +2,6 @@ package usecase
 
 type ProductOutputData struct {
 	Nome                  string
-	Price                 float32
+	Price                 float64
 	EstoqueEstaDisponivel bool
 }

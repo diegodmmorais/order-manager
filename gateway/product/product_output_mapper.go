@@ -2,6 +2,6 @@ package gateway
 
 type ProductOutputMapper struct {
 	Nome                  string
-	Price                 float32
+	Price                 float64
 	EstoqueEstaDisponivel bool
 }

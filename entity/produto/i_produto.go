@@ -3,6 +3,6 @@ package entity
 type IProduto interface {
 	EValido() (bool, error)
 	GetNome() string
-	GetPreco() float32
+	GetPreco() float64
 	EstoqueEstaDisponivel() bool
 }

@@ -9,7 +9,7 @@ import (
 
 type Order struct {
 	Id    primitive.ObjectID `bson:"_id"`
-	Total float32            `bson:"total"`
+	Total float64            `bson:"total"`
 	Itens []Item             `bson:"itens"`
 }
 
@@ -17,7 +17,7 @@ type Item struct {
 	ID         primitive.ObjectID `bson:"_id"`
 	Nome       string             `bson:"nome"`
 	Quantidade uint32             `bson:"quantidade"`
-	Preco      float32            `bson:"preco"`
+	Preco      float64            `bson:"preco"`
 }
 
 func TestConectarComUmBanco(t *testing.T) {
@@ -26,17 +26,17 @@ func TestConectarComUmBanco(t *testing.T) {
 
 	client, _ := dataSource.Connect()
 
-	collection := dataSource.DataSource(client, "lw-orders", "orders")
+	collection := dataSource.DataSource(client, "labsit", "orders")
 
 	collection.InsertOne(context.TODO(), &Order{
 		Id:    primitive.NewObjectID(),
-		Total: float32(1000.0),
+		Total: 1000.23,
 		Itens: []Item{
 			{
 				ID:         primitive.NewObjectID(),
 				Nome:       "Macbook",
 				Quantidade: 1,
-				Preco:      float32(1000.0),
+				Preco:      1000.23,
 			},
 		},
 	})

@@ -19,12 +19,12 @@ func TestSalverPedido(t *testing.T) {
 
 	inputMapper := order.OrderInputMapper{
 		IdentificationDocument: "999.999.999-00",
-		Freight:                float32(55.0),
+		Freight:                55.0,
 		Total:                  17555.0,
 		Itens: []order.ItemInputMapper{
 			{
 				ProductName: "Macbook pro 15",
-				Price:       float32(17500.0),
+				Price:       17500.0,
 				Amount:      1,
 			},
 		},

@@ -11,7 +11,7 @@ type productApi struct {
 func (p *productApi) FindByProduct(productID string) (product.ProductOutputMapper, error) {
 	return product.ProductOutputMapper{
 		Nome:                  "MacBook 15 pro",
-		Price:                 float32(17500.0),
+		Price:                 17500.0,
 		EstoqueEstaDisponivel: true,
 	}, nil
 }

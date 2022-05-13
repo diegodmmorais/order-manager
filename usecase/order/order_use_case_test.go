@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	address "github.com/diego-dm-morais/order-manager/usecase/address"
-	customer 	"github.com/diego-dm-morais/order-manager/usecase/customer"
+	customer "github.com/diego-dm-morais/order-manager/usecase/customer"
 	item "github.com/diego-dm-morais/order-manager/usecase/item"
 	product "github.com/diego-dm-morais/order-manager/usecase/product"
 	"github.com/stretchr/testify/assert"
@@ -21,7 +21,7 @@ func Test_salvar_pedido(t *testing.T) {
 
 	mockIProductGateway.On("FindByProduct").Return(product.ProductOutputData{
 		Nome:                  "Macbook pro 15",
-		Price:                 float32(17500),
+		Price:                 17500.0,
 		EstoqueEstaDisponivel: true,
 	}, nil)
 
@@ -117,7 +117,7 @@ func Test_salvar_pedido_erro_ao_salvar_pedido(t *testing.T) {
 
 	mockIProductGateway.On("FindByProduct").Return(product.ProductOutputData{
 		Nome:                  "Macbook pro 15",
-		Price:                 float32(17500),
+		Price:                 float64(17500),
 		EstoqueEstaDisponivel: true,
 	}, nil)
 
