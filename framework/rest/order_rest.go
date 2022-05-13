@@ -1,6 +1,7 @@
 package framework
 
 import (
+	"log"
 	"net/http"
 
 	orderController "github.com/diego-dm-morais/order-manager/controller"
@@ -18,7 +19,8 @@ func (o *orderRest) Save(c echo.Context) (err error) {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 	if err = c.Validate(orderRequest); err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+		log.Println(err)
+		return echo.NewHTTPError(http.StatusBadRequest, "verifique se todos os campos obrigatórios foram preenchidos")
 	}
 	response, erroResponse := o.orderController.Save(*orderRequest)
 

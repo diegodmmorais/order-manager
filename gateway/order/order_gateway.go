@@ -22,7 +22,7 @@ func (o orderGateway) Save(orderData order.OrderInputData) (string, error) {
 			City:    orderData.ShippingAddress.City,
 		},
 		Itens: func(itens []item.ItemInputData) []ItemInputMapper {
-			var itensMapper []ItemInputMapper = make([]ItemInputMapper, len(itens))
+			var itensMapper []ItemInputMapper 
 			for _, it := range itens {
 				itensMapper = append(itensMapper, ItemInputMapper{
 					ProductName: it.ProductName,
