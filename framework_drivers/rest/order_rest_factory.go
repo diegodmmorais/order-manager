@@ -1,11 +1,12 @@
 package framework
 
 import (
+	orderUseCase "github.com/diego-dm-morais/order-manager/application_business_rules/usecase/order"
 	customerApi "github.com/diego-dm-morais/order-manager/framework_drivers/apiclient/customer"
 	productApi "github.com/diego-dm-morais/order-manager/framework_drivers/apiclient/product"
-	orderUseCase "github.com/diego-dm-morais/order-manager/application_business_rules/usecase/order"
+	database "github.com/diego-dm-morais/order-manager/framework_drivers/database/mongo"
+	//database "github.com/diego-dm-morais/order-manager/framework_drivers/database/postgres"
 	orderController "github.com/diego-dm-morais/order-manager/interface_adapters/controller"
-	database "github.com/diego-dm-morais/order-manager/framework_drivers/database"
 	customerGateway "github.com/diego-dm-morais/order-manager/interface_adapters/gateway/customer"
 	orderGateway "github.com/diego-dm-morais/order-manager/interface_adapters/gateway/order"
 	productGateway "github.com/diego-dm-morais/order-manager/interface_adapters/gateway/product"
@@ -16,6 +17,10 @@ import (
 func CreateOrderRest() IOrderRest {
 	connectorMongoDataSource := database.CreateConnectorMongoDataSource()
 	orderRepository := orderRepository.CreateOrderRepository(connectorMongoDataSource)
+
+	//connectorDataSource := database.CreateConnectorPostgresDataSource()
+	//orderRepository := orderRepository.CreateOrderRepository(connectorDataSource)
+
 	orderGateway := orderGateway.CreateOrderGateway(orderRepository)
 
 	customerApi := customerApi.CreateCustomerApi()

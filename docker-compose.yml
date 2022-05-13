@@ -17,14 +17,47 @@ services:
       - ./mongo/order/data/configdb:/data/configdb
       - ./mongo/order/data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    extra_hosts:
+      - "host.docker.internal:172.4.0.1"
 
   mongo-express:
     container_name: mongo_express_order
     image: mongo-express
     restart: always
     ports:
-      - 8104:8081
+      - 8081:8081
     depends_on:
       - mongo
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://admin:admin123@mongo:27017/
+    extra_hosts:
+      - "host.docker.internal:172.4.0.1"
+
+  postgres:
+    container_name: postgres_order
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: admin123
+      PGDATA: /var/lib/postgresql/data/mnt
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    extra_hosts:
+      - "host.docker.internal:172.4.0.1"
+
+  pgadmin4:
+    container_name: pgadmin_order
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "diego.morais@labsit.io"
+      PGADMIN_DEFAULT_PASSWORD: "admin123"
+    ports:
+      - "8082:80"
+    depends_on:
+      - postgres
+    extra_hosts:
+      - "host.docker.internal:172.4.0.1"
+
+volumes:
+  pgdata:

@@ -6,5 +6,9 @@ import (
 )
 
 func CreateOrderRepository(connectorMongoDataSource repository.IConnectorMongoDataSource) order.IOrderRepository {
-	return &orderRepository{connectorMongoDataSource: connectorMongoDataSource}
+	return &orderRepository{connectorDataSource: connectorMongoDataSource}
 }
+
+//func CreateOrderRepository(connectorMongoDataSource repository.IConnectorPostgresDataSource) order.IOrderRepository {
+//	return &orderRepository{connectorDataSource: connectorMongoDataSource}
+//}
