@@ -1,15 +1,15 @@
-package order
+package usecase
 
 import (
-	"github.com/diego-dm-morais/order-manager/entity/cliente"
-	"github.com/diego-dm-morais/order-manager/entity/endereco"
-	"github.com/diego-dm-morais/order-manager/entity/item"
-	"github.com/diego-dm-morais/order-manager/entity/pedido"
-	"github.com/diego-dm-morais/order-manager/entity/produto"
-	"github.com/diego-dm-morais/order-manager/usecase/address"
-	"github.com/diego-dm-morais/order-manager/usecase/customer"
+	cliente "github.com/diego-dm-morais/order-manager/entity/cliente"
+	endereco "github.com/diego-dm-morais/order-manager/entity/endereco"
+	item "github.com/diego-dm-morais/order-manager/entity/item"
+	pedido "github.com/diego-dm-morais/order-manager/entity/pedido"
+	produto "github.com/diego-dm-morais/order-manager/entity/produto"
+	address "github.com/diego-dm-morais/order-manager/usecase/address"
+	customer "github.com/diego-dm-morais/order-manager/usecase/customer"
 	itemUseCase "github.com/diego-dm-morais/order-manager/usecase/item"
-	"github.com/diego-dm-morais/order-manager/usecase/product"
+	product "github.com/diego-dm-morais/order-manager/usecase/product"
 )
 
 type orderUseCase struct {

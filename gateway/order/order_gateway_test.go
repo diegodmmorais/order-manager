@@ -1,12 +1,12 @@
-package order
+package gateway
 
 import (
 	"fmt"
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/usecase/address"
-	"github.com/diego-dm-morais/order-manager/usecase/item"
-	"github.com/diego-dm-morais/order-manager/usecase/order"
+	address "github.com/diego-dm-morais/order-manager/usecase/address"
+	item "github.com/diego-dm-morais/order-manager/usecase/item"
+	order "github.com/diego-dm-morais/order-manager/usecase/order"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,7 +3,7 @@ package presenter
 import (
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/usecase/order"
+	order "github.com/diego-dm-morais/order-manager/usecase/order"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,12 +1,12 @@
-package pedido
+package entity
 
 import (
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/entity/cliente"
-	"github.com/diego-dm-morais/order-manager/entity/endereco"
-	"github.com/diego-dm-morais/order-manager/entity/item"
-	"github.com/diego-dm-morais/order-manager/entity/produto"
+	cliente "github.com/diego-dm-morais/order-manager/entity/cliente"
+	endereco "github.com/diego-dm-morais/order-manager/entity/endereco"
+	item "github.com/diego-dm-morais/order-manager/entity/item"
+	produto "github.com/diego-dm-morais/order-manager/entity/produto"
 	"github.com/stretchr/testify/assert"
 )
 

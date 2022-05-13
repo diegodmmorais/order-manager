@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/diego-dm-morais/order-manager/usecase/order"
+	order "github.com/diego-dm-morais/order-manager/usecase/order"
 )
 
 type orderPresenter struct {

@@ -1,4 +1,4 @@
-package cliente
+package entity
 
 type clienteBuilder struct {
 	nome                   string

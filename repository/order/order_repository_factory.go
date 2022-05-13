@@ -1,8 +1,8 @@
-package order
+package repository
 
 import (
-	"github.com/diego-dm-morais/order-manager/gateway/order"
-	"github.com/diego-dm-morais/order-manager/repository"
+	order "github.com/diego-dm-morais/order-manager/gateway/order"
+	repository "github.com/diego-dm-morais/order-manager/repository"
 )
 
 func CreateOrderRepository(connectorMongoDataSource repository.IConnectorMongoDataSource) order.IOrderRepository {

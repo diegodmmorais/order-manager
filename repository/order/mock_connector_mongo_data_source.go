@@ -1,4 +1,4 @@
-package order
+package repository
 
 import (
 	"github.com/stretchr/testify/mock"

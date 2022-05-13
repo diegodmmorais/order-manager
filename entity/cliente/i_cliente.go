@@ -1,4 +1,4 @@
-package cliente
+package entity
 
 type ICliente interface {
 	EValido() (bool, error)

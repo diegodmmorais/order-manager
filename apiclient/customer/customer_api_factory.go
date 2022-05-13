@@ -1,7 +1,7 @@
 package apiclient
 
 import (
-	"github.com/diego-dm-morais/order-manager/gateway/customer"
+	customer "github.com/diego-dm-morais/order-manager/gateway/customer"
 )
 
 func CreateCustomerApi() customer.ICustomerApi {

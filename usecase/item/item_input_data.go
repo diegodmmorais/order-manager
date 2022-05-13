@@ -1,4 +1,4 @@
-package item
+package usecase
 
 type ItemInputData struct {
 	ProductName string

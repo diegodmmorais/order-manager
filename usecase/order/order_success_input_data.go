@@ -1,4 +1,4 @@
-package order
+package usecase
 
 type OrderSuccessInputData struct {
 	OrderID      string

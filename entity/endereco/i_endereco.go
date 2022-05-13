@@ -1,4 +1,4 @@
-package endereco
+package entity
 
 type IEndereco interface {
 	EValido() (bool, error)

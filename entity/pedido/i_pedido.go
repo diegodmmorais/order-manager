@@ -1,9 +1,9 @@
-package pedido
+package entity
 
 import (
-	"github.com/diego-dm-morais/order-manager/entity/cliente"
-	"github.com/diego-dm-morais/order-manager/entity/endereco"
-	"github.com/diego-dm-morais/order-manager/entity/item"
+	cliente "github.com/diego-dm-morais/order-manager/entity/cliente"
+	endereco "github.com/diego-dm-morais/order-manager/entity/endereco"
+	item "github.com/diego-dm-morais/order-manager/entity/item"
 )
 
 type IPedido interface {

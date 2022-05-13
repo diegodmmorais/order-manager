@@ -1,7 +1,7 @@
 package apiclient
 
 import (
-	"github.com/diego-dm-morais/order-manager/gateway/product"
+	product "github.com/diego-dm-morais/order-manager/gateway/product"
 )
 
 type productApi struct {

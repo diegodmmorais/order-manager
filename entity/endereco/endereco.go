@@ -1,4 +1,4 @@
-package endereco
+package entity
 
 import (
 	"fmt"

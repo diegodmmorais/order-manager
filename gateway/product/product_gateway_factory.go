@@ -1,7 +1,7 @@
-package product
+package gateway
 
 import (
-	"github.com/diego-dm-morais/order-manager/usecase/product"
+	product "github.com/diego-dm-morais/order-manager/usecase/product"
 )
 
 func CreateProductGateway(productApi IProductApi) product.IProductGateway {

@@ -1,4 +1,4 @@
-package customer
+package gateway
 
 type CustomerOutPutMapper struct {
 	Name                   string

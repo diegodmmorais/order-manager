@@ -1,4 +1,4 @@
-package product
+package gateway
 
 type ProductOutputMapper struct {
 	Nome                  string

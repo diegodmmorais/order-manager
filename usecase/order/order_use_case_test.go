@@ -1,13 +1,13 @@
-package order
+package usecase
 
 import (
 	"fmt"
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/usecase/address"
-	"github.com/diego-dm-morais/order-manager/usecase/customer"
-	"github.com/diego-dm-morais/order-manager/usecase/item"
-	"github.com/diego-dm-morais/order-manager/usecase/product"
+	address "github.com/diego-dm-morais/order-manager/usecase/address"
+	customer 	"github.com/diego-dm-morais/order-manager/usecase/customer"
+	item "github.com/diego-dm-morais/order-manager/usecase/item"
+	product "github.com/diego-dm-morais/order-manager/usecase/product"
 	"github.com/stretchr/testify/assert"
 )
 

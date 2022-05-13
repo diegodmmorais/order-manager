@@ -1,4 +1,4 @@
-package address
+package usecase
 
 type AddressInputData struct {
 	Street  string

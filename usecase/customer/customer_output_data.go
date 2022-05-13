@@ -1,4 +1,4 @@
-package customer
+package usecase
 
 type CustomerOutputData struct {
 	Name                   string

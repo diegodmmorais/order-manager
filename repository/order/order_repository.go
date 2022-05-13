@@ -1,8 +1,8 @@
-package order
+package repository
 
 import (
-	"github.com/diego-dm-morais/order-manager/gateway/order"
-	"github.com/diego-dm-morais/order-manager/repository"
+	order "github.com/diego-dm-morais/order-manager/gateway/order"
+	repository "github.com/diego-dm-morais/order-manager/repository"
 )
 
 type orderRepository struct {
@@ -13,7 +13,7 @@ type orderRepository struct {
 const DATA_BASE_LABSIT, TABLE_ORDERS = "labsit", "orders"
 
 func (o orderRepository) Save(orderMapper order.OrderInputMapper) (string, error) {
- 	client, _ := o.connectorMongoDataSource.Connect()
+	client, _ := o.connectorMongoDataSource.Connect()
 	collection := o.connectorMongoDataSource.DataSource(client, DATA_BASE_LABSIT, TABLE_ORDERS)
 	id, err := o.connectorMongoDataSource.Save(collection, orderMapper)
 	o.connectorMongoDataSource.Disconnect(client)

@@ -1,4 +1,4 @@
-package order
+package usecase
 
 type OrderResponse struct {
 	ID           string `json:"id"`

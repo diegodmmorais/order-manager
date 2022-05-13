@@ -1,4 +1,4 @@
-package produto
+package entity
 
 import (
 	"testing"

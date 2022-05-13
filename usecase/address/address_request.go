@@ -1,4 +1,4 @@
-package address
+package usecase
 
 type ShippingAddressRequest struct {
 	Street  string `json:"street"`

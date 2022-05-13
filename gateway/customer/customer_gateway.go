@@ -1,6 +1,6 @@
-package customer
+package gateway
 
-import "github.com/diego-dm-morais/order-manager/usecase/customer"
+import customer "github.com/diego-dm-morais/order-manager/usecase/customer"
 
 type customerGateway struct {
 	customer.ICustomerGateway

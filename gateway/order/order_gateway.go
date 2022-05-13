@@ -1,8 +1,8 @@
-package order
+package gateway
 
 import (
-	"github.com/diego-dm-morais/order-manager/usecase/item"
-	"github.com/diego-dm-morais/order-manager/usecase/order"
+	item "github.com/diego-dm-morais/order-manager/usecase/item"
+	order "github.com/diego-dm-morais/order-manager/usecase/order"
 )
 
 type orderGateway struct {

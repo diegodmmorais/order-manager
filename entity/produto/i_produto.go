@@ -1,4 +1,4 @@
-package produto
+package entity
 
 type IProduto interface {
 	EValido() (bool, error)

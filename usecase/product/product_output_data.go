@@ -1,4 +1,4 @@
-package product
+package usecase
 
 type ProductOutputData struct {
 	Nome                  string

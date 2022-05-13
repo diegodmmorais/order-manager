@@ -1,8 +1,8 @@
-package order
+package usecase
 
 import (
-	"github.com/diego-dm-morais/order-manager/usecase/customer"
-	"github.com/diego-dm-morais/order-manager/usecase/product"
+	customer "github.com/diego-dm-morais/order-manager/usecase/customer"
+	product "github.com/diego-dm-morais/order-manager/usecase/product"
 )
 
 func CreateOrderUseCase(

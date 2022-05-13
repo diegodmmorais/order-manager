@@ -1,4 +1,4 @@
-package product
+package usecase
 
 import "github.com/stretchr/testify/mock"
 

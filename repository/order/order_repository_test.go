@@ -1,9 +1,9 @@
-package order
+package repository
 
 import (
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/gateway/order"
+	order "github.com/diego-dm-morais/order-manager/gateway/order"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/mongo"
 )

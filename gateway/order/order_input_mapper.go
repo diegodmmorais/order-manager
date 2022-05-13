@@ -1,4 +1,4 @@
-package order
+package gateway
 
 type OrderInputMapper struct {
 	IdentificationDocument string             `bson:"identification_document"`

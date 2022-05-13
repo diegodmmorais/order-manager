@@ -1,4 +1,4 @@
-package order
+package gateway
 
 type AddressInputMapper struct {
 	Street  string `bson:"street"`

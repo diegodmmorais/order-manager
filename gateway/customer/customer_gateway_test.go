@@ -1,9 +1,9 @@
-package customer
+package gateway
 
 import (
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/usecase/customer"
+	customer "github.com/diego-dm-morais/order-manager/usecase/customer"
 	"github.com/stretchr/testify/assert"
 )
 

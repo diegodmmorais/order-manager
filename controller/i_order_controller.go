@@ -1,6 +1,6 @@
-package order
+package controller
 
-import "github.com/diego-dm-morais/order-manager/usecase/order"
+import order "github.com/diego-dm-morais/order-manager/usecase/order"
 
 type IOrderController interface {
 	Save(OrderRequest order.OrderRequest) (*order.OrderResponse, error)

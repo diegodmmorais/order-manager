@@ -1,9 +1,9 @@
-package item
+package entity
 
 import (
 	"testing"
 
-	"github.com/diego-dm-morais/order-manager/entity/produto"
+	produto "github.com/diego-dm-morais/order-manager/entity/produto"
 	"github.com/stretchr/testify/assert"
 )
 

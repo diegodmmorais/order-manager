@@ -1,8 +1,8 @@
-package order
+package usecase
 
 import (
-	"github.com/diego-dm-morais/order-manager/usecase/address"
-	"github.com/diego-dm-morais/order-manager/usecase/item"
+	address "github.com/diego-dm-morais/order-manager/usecase/address"
+	item "github.com/diego-dm-morais/order-manager/usecase/item"
 )
 
 type OrderRequest struct {

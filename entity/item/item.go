@@ -1,9 +1,9 @@
-package item
+package entity
 
 import (
 	"fmt"
 
-	"github.com/diego-dm-morais/order-manager/entity/produto"
+	produto "github.com/diego-dm-morais/order-manager/entity/produto"
 )
 
 type item struct {

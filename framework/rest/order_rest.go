@@ -1,26 +1,26 @@
-package rest
+package framework
 
 import (
 	"net/http"
 
-	orderController "github.com/diego-dm-morais/order-manager/controller/order"
-	"github.com/diego-dm-morais/order-manager/usecase/order"
+	orderController "github.com/diego-dm-morais/order-manager/controller"
+	orderUseCase "github.com/diego-dm-morais/order-manager/usecase/order"
 	"github.com/labstack/echo"
 )
 
-type OrderRest struct {
-	OrderController orderController.IOrderController
+type orderRest struct {
+	orderController orderController.IOrderController
 }
 
-func (o *OrderRest) Save(c echo.Context) (err error) {
-	orderRequest := new(order.OrderRequest)
+func (o *orderRest) Save(c echo.Context) (err error) {
+	orderRequest := new(orderUseCase.OrderRequest)
 	if err = c.Bind(orderRequest); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 	if err = c.Validate(orderRequest); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
-	response, erroResponse := o.OrderController.Save(*orderRequest)
+	response, erroResponse := o.orderController.Save(*orderRequest)
 
 	if erroResponse != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, erroResponse.Error())
