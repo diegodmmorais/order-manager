@@ -56,7 +56,7 @@ func Test_salvar_pedido(t *testing.T) {
 		},
 	}
 
-	response, erro := orderInputBoundary.Salvar(orderRequest)
+	response, erro := orderInputBoundary.Save(orderRequest)
 
 	assert.NotNil(t, response)
 	assert.NotNil(t, response.ID)
@@ -98,7 +98,7 @@ func Test_salvar_pedido_sem_itens(t *testing.T) {
 		},
 	}
 
-	response, erro := orderInputBoundary.Salvar(orderRequest)
+	response, erro := orderInputBoundary.Save(orderRequest)
 
 	assert.Nil(t, response)
 	assert.NotNil(t, erro)
@@ -146,7 +146,7 @@ func Test_salvar_pedido_erro_ao_salvar_pedido(t *testing.T) {
 		},
 	}
 
-	response, erro := orderInputBoundary.Salvar(orderRequest)
+	response, erro := orderInputBoundary.Save(orderRequest)
 
 	fmt.Println(response)
 	assert.Nil(t, response)

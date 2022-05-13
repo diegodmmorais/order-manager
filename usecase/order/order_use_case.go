@@ -20,7 +20,7 @@ type orderUseCase struct {
 	orderGateway        IOrderGateway
 }
 
-func (o orderUseCase) Salvar(order OrderRequest) (*OrderResponse, error) {
+func (o orderUseCase) Save(order OrderRequest) (*OrderResponse, error) {
 	var itens []item.IItem = o._GetItens(order.Items)
 	var cliente cliente.ICliente = o._GetCustomer(order.CustomerID)
 	var endereco endereco.IEndereco = o._GetAddress(order.ShippingAddress)
