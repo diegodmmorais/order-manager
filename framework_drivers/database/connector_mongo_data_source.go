@@ -9,6 +9,9 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+
+	"github.com/joho/godotenv"
+	"os"
 )
 
 type connectorMongoDataSource struct {
@@ -18,7 +21,11 @@ type connectorMongoDataSource struct {
 var clientOptions *options.ClientOptions
 
 func init() {
-	clientOptions = options.Client().ApplyURI("mongodb://admin:admin123@127.0.0.1:27017")
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Println(err)
+	}
+	clientOptions = options.Client().ApplyURI(os.Getenv("MONGO_DATA_BASE_URL"))
 }
 
 func (c *connectorMongoDataSource) Connect() (*mongo.Client, error) {
