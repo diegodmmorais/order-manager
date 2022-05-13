@@ -37,6 +37,7 @@ func (c *connectorPostgresDataSource) Connect() error {
 		log.Println(pingErr)
 		return pingErr
 	}
+	log.Println("Connection to MongoDB opened.")
 	return nil
 }
 
@@ -46,6 +47,7 @@ func (c *connectorPostgresDataSource) Disconnect() (bool, error) {
 		log.Println(err)
 		return false, err
 	}
+	log.Println("Connection to MongoDB closed.")
 	return true, nil
 }
 

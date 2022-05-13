@@ -2,7 +2,6 @@ package database
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	"github.com/diego-dm-morais/order-manager/interface_adapters/repository"
@@ -40,6 +39,7 @@ func (c *connectorMongoDataSource) Connect() (*mongo.Client, error) {
 		log.Println(err)
 		return nil, err
 	}
+	log.Println("Connection to MongoDB opened.")
 	return client, nil
 }
 
@@ -53,7 +53,7 @@ func (c *connectorMongoDataSource) Disconnect(client *mongo.Client) (bool, error
 		log.Println(err)
 		return false, err
 	}
-	fmt.Println("Connection to MongoDB closed.")
+	log.Println("Connection to MongoDB closed.")
 	return true, nil
 }
 
