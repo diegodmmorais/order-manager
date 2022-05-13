@@ -2,6 +2,7 @@ package presenter
 
 import (
 	"fmt"
+	"log"
 	"strings"
 
 	order "github.com/diego-dm-morais/order-manager/application_business_rules/usecase/order"
@@ -18,6 +19,7 @@ func (p orderPresenter) Success(orderInput order.OrderSuccessInputData) (*order.
 	case orderInput.OrderID == "" || strings.TrimSpace(orderInput.OrderID) == "":
 		return nil, fmt.Errorf("id do pedido não encontrado")
 	default:
+		log.Println("Retornando operação executada com sucesso")
 		return &order.OrderResponse{
 			ID:           orderInput.OrderID,
 			CustomerName: orderInput.CustomerName,

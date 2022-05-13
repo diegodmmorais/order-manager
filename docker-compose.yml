@@ -6,7 +6,7 @@ services:
   mongo:
     container_name: mongo_order
     image: mongo
-    restart: unless-stopped
+    restart: always
     environment:
       MONGO_INITDB_DATABASE: "labsit"
       MONGO_INITDB_ROOT_USERNAME: "admin"
@@ -21,7 +21,7 @@ services:
   mongo-express:
     container_name: mongo_express_order
     image: mongo-express
-    restart: unless-stopped
+    restart: always
     ports:
       - 8104:8081
     depends_on:

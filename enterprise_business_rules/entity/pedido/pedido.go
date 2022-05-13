@@ -2,6 +2,7 @@ package entity
 
 import (
 	"fmt"
+	"log"
 	"math"
 
 	cliente "github.com/diego-dm-morais/order-manager/enterprise_business_rules/entity/cliente"
@@ -17,6 +18,7 @@ type pedido struct {
 }
 
 func (p pedido) EValido() (bool, error) {
+	log.Println("Validando os dados do pedido")
 	switch {
 	case p.cliente == nil:
 		return false, fmt.Errorf("cliente não foi encontrado")
