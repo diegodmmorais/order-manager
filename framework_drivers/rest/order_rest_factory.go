@@ -12,7 +12,7 @@ import (
 	orderGateway "github.com/diego-dm-morais/order-manager/interface_adapters/gateway/order"
 	productGateway "github.com/diego-dm-morais/order-manager/interface_adapters/gateway/product"
 	presenter "github.com/diego-dm-morais/order-manager/interface_adapters/presenter"
-	orderRepository "github.com/diego-dm-morais/order-manager/interface_adapters/repository/order"
+	orderRepository "github.com/diego-dm-morais/order-manager/framework_drivers/repository/order"
 )
 
 func CreateOrderRest() IOrderRest {
