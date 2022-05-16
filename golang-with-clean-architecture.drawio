@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-05-16T21:11:41.958Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="8QtNAlP4fCCHPRa1VdFH" version="17.4.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-05-16T21:12:40.158Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="tqCs_VQxLUDOSlipyQEg" version="17.4.6" type="github">
   <diagram id="Me0cT0Ub-9uqAWpHxTRK" name="Page-1">
     <mxGraphModel dx="1422" dy="694" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -138,8 +138,8 @@
         <mxCell id="U3LBDuDNAgVWqFlJIJbO-38" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;endArrow=classic;endFill=0;dashed=1;dashPattern=1 1;" edge="1" parent="1" source="U3LBDuDNAgVWqFlJIJbO-14" target="U3LBDuDNAgVWqFlJIJbO-25">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="U3LBDuDNAgVWqFlJIJbO-39" value="" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image;image=img/lib/active_directory/database.svg;fontSize=9;" vertex="1" parent="1">
-          <mxGeometry x="679" y="416.69" width="63" height="46.62" as="geometry" />
+        <mxCell id="U3LBDuDNAgVWqFlJIJbO-39" value="banco de dados" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=0;image;image=img/lib/active_directory/database.svg;fontSize=9;spacingBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="683.74" y="426.66" width="58.53" height="43.31" as="geometry" />
         </mxCell>
         <mxCell id="U3LBDuDNAgVWqFlJIJbO-44" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/app_services/API_Management_Services.svg;" vertex="1" parent="1">
           <mxGeometry x="765.7" y="562" width="48.75" height="45" as="geometry" />
