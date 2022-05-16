@@ -23,9 +23,15 @@ type orderUseCase struct {
 }
 
 func (o orderUseCase) Save(order OrderRequest) (*OrderResponse, error) {
-	var itens []item.IItem = o._GetItens(order.Items)
-	var cliente cliente.ICliente = o._GetCustomer(order.CustomerID)
-	var endereco endereco.IEndereco = o._GetAddress(order.ShippingAddress)
+
+	channel := make(chan interface{}, 3)
+
+	go o._Load(order, channel)
+	
+	itens := (<-channel).([]item.IItem)
+	cliente := (<-channel).(cliente.ICliente)
+	endereco := (<-channel).(endereco.IEndereco)
+
 	var pedido pedido.IPedido = pedido.New().SetItens(itens).SetCliente(cliente).SetEnderecoEntrega(endereco).SetFrete(order.Freight).Build()
 
 	_, erro := pedido.EValido()
@@ -54,6 +60,12 @@ func (o orderUseCase) Save(order OrderRequest) (*OrderResponse, error) {
 	}
 
 	return o.orderOutputBoundary.Success(OrderSuccessInputData{OrderID: orderID, CustomerName: cliente.GetNome()})
+}
+
+func (o orderUseCase) _Load(order OrderRequest, channel chan any) {
+	channel <- o._GetItens(order.Items)
+	channel <- o._GetCustomer(order.CustomerID)
+	channel <- o._GetAddress(order.ShippingAddress)
 }
 
 func (o orderUseCase) _GetItens(itensRequest []itemUseCase.ItemRequest) []item.IItem {
