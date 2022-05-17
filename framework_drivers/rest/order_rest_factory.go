@@ -5,7 +5,7 @@ import (
 	customerApi "github.com/diego-dm-morais/order-manager/framework_drivers/apiclient/customer"
 	productApi "github.com/diego-dm-morais/order-manager/framework_drivers/apiclient/product"
 
-	database "github.com/diego-dm-morais/order-manager/framework_drivers/database/mongo"
+	database "github.com/diego-dm-morais/order-manager/framework_drivers/repository/database/mongo"
 	//database "github.com/diego-dm-morais/order-manager/framework_drivers/database/postgres"
 	orderController "github.com/diego-dm-morais/order-manager/interface_adapters/controller"
 	customerGateway "github.com/diego-dm-morais/order-manager/interface_adapters/gateway/customer"

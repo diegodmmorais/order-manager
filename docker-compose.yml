@@ -58,6 +58,20 @@ services:
       - postgres
     extra_hosts:
       - "host.docker.internal:172.4.0.1"
+  
+  order-manager:
+    image: order-manager:1.0.7
+    build: .
+    container_name: order-manager
+    environment:
+      - MONGO_DATA_BASE_URL=mongodb://admin:admin123@mongo:27017
+    ports:
+      - "8985:1323"
+    depends_on:
+      - mongo
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:172.4.0.1"
 
 volumes:
   pgdata:

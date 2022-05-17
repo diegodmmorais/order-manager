@@ -9,8 +9,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
-	"github.com/joho/godotenv"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 type connectorMongoDataSource struct {
@@ -24,7 +25,10 @@ func init() {
 	if err != nil {
 		log.Println(err)
 	}
-	clientOptions = options.Client().ApplyURI(os.Getenv("MONGO_DATA_BASE_URL"))
+	log.Println("Variáveis foram carregadas")
+	url := os.Getenv("MONGO_DATA_BASE_URL")
+	log.Printf("MONGO_DATA_BASE_URL=%s", url)
+	clientOptions = options.Client().ApplyURI(url)
 }
 
 func (c *connectorMongoDataSource) Connect() (*mongo.Client, error) {
