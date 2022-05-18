@@ -62,7 +62,7 @@ services:
   order-manager:
     image: order-manager:1.0.0
     build: .
-    container_name: order-manager
+    container_name: order_manager
     environment:
       - MONGO_DATA_BASE_URL=mongodb://admin:admin123@mongo:27017
     ports:
