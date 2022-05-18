@@ -13,13 +13,13 @@ COPY main.go ./
 ARG MONGO_DATA_BASE_URL
 ENV MONGO_DATA_BASE_URL=${MONGO_DATA_BASE_URL}
 
-RUN go build -o /docker-gs-ping
+RUN go build -o /order-manager
 ##
 ## Deploy
 ##
 FROM gcr.io/distroless/base-debian10
 WORKDIR /
-COPY --from=build /docker-gs-ping /docker-gs-ping
+COPY --from=build /order-manager /order-manager
 EXPOSE 1323
 USER nonroot:nonroot
-ENTRYPOINT ["/docker-gs-ping"]
+ENTRYPOINT ["/order-manager"]
