@@ -60,7 +60,7 @@ services:
       - "host.docker.internal:172.4.0.1"
   
   order-manager:
-    image: order-manager:1.0.7
+    image: order-manager:1.0.0
     build: .
     container_name: order-manager
     environment:

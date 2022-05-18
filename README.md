@@ -1,5 +1,12 @@
 # order-manager
 
+## Clean architecture
+Arquitetura Limpa (Clean Architecture) tem como objetivo de promover a implementação de sistemas que favorecem:
+    1 - reusabilidade de código
+    2 - coesão 
+    3 - independência de tecnologia
+    4 - testabilidade.
+
 ## Comando para executar coverage
 ```shell
 go test ./... --coverprofile=cover.out && go tool cover --html=cover.out

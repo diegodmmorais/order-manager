@@ -2,10 +2,13 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-    vus: 1,
-    duration: '1m',
+    stages: [
+        { duration: '2s', target: 40 }, // ramp up to 400 users
+        { duration: '3m56s', target: 40 }, // stay at 400 for ~4 hours
+        { duration: '2s', target: 0 }, // scale down. (optional)
+      ],
     thresholds: {
-        http_req_duration: ['p(99)<70'], // 99% of requests must complete below 70ms
+        http_req_duration: ['p(95)<1500'], 
     },
 };
 
@@ -39,10 +42,13 @@ export default () => {
         },
     };
 
-
-    const resp = http.post(`${BASE_URL}/orders`, payload, params);
-    check(resp, { 'logged in successfully': (resp) => resp.json('message') !== '' });
-
+    http.batch([
+        ['POST', `${BASE_URL}/orders`, payload, params],
+        ['POST', `${BASE_URL}/orders`, payload, params],
+        ['POST', `${BASE_URL}/orders`, payload, params],
+        ['POST', `${BASE_URL}/orders`, payload, params],
+        ['POST', `${BASE_URL}/orders`, payload, params],
+    ]);
 
     sleep(1);
-}
+}   
