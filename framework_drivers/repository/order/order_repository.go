@@ -20,8 +20,7 @@ const DATA_BASE_LABSIT, TABLE_ORDERS = "labsit", "orders"
 func (o orderRepository) Save(orderMapper order.OrderInputMapper) (string, error) {
 	log.Println("Salvando dados no banco mongo")
 
-	//dataJson, err := json.Marshal(orderMapper)
-
+	//dataJson, _ := json.Marshal(orderMapper)
 	//sql := `
 	//	INSERT INTO orders (id, data)
 	//	VALUES ($1, $2)
@@ -34,5 +33,7 @@ func (o orderRepository) Save(orderMapper order.OrderInputMapper) (string, error
 	defer o.connectorDataSource.Disconnect(client)
 	collection := o.connectorDataSource.DataSource(client, DATA_BASE_LABSIT, TABLE_ORDERS)
 	id, err := o.connectorDataSource.Save(collection, orderMapper)
+
+
 	return id, err
 }
