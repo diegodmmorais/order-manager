@@ -1,5 +1,5 @@
 # order-manager
-
+![alt text](https://github.com/diegodmmorais/order-manager/blob/main/golang-with-clean-architecture.drawio.png)
 ## Clean architecture
 Arquitetura Limpa (Clean Architecture) tem como objetivo de promover a implementação de sistemas que favorecem:
     1 - reusabilidade de código
