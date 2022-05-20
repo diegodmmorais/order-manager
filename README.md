@@ -62,3 +62,29 @@ ALTER TABLE IF EXISTS public.orders
     OWNER to postgres;
 
 ```
+
+## Postman Payload Test
+```json
+curl --location --request POST 'http://localhost:1323/api/v1/orders' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "customer_id": "#1",
+    "shipping_address": {
+        "street": "Rua new street",
+        "number": "777",
+        "zip_code": "98897-890",
+        "city": "São paulo - SP"
+    },
+    "freight": 55.98,
+    "items": [
+        {
+            "product_id": "#1",
+            "amount": 1
+        },
+        {
+            "product_id": "#1",
+            "amount": 10
+        }
+    ]
+}'
+```
